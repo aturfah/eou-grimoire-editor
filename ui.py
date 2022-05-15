@@ -167,7 +167,7 @@ class Root(Tk):
 
     def _update_grimoire_levels(self, index, new_level):
         self.grimoire_data[self.chosen_idx]["skills"][index]["level"] = new_level
-        self.grimoire_data[self.chosen_idx]["skills"][index]["level_hex"] = [str(new_level).zfill(2), "00"]
+        self.grimoire_data[self.chosen_idx]["skills"][index]["level_hex"] = [format(new_level, 'x').zfill(2), "00"]
 
         print(self.grimoire_data[self.chosen_idx]["skills"][index])
 
@@ -182,7 +182,11 @@ class Root(Tk):
             self._error_message("Error Saving", "Can't save if you haven't loaded...")
             return
 
-        uih.save_wrapper(self.file_hex, self.grimoire_data)
+        output_file = filedialog.asksaveasfilename(
+            initialfile = 'mor1rgame.sav',
+            confirmoverwrite=True)
+
+        uih.save_wrapper(self.file_hex, self.grimoire_data, output_file)
  
 root = Root()
 root.mainloop()
