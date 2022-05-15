@@ -57,6 +57,7 @@ def map_grimoire_quality(grimoire_data):
     """Bytes 3/4 are Quality"""
     quality_tuple = tuple(grimoire_data[2:4])
     quality_map = {
+        "00": "--",
         "01": "Flawless",
         "02": "Slightly Damaged",
         "03": "Damaged",
@@ -72,6 +73,7 @@ def map_grimoire_type(grimoire_data):
     """Bytes 5/6 are Type"""
     grimoire_type_tuple = tuple(grimoire_data[4:6])
     type_map = {
+        "00": "--",
         "06": "Sword Grimoire",
         "07": "Battle Grimoire",
         "08": "Gather Grimoire",
@@ -142,11 +144,9 @@ def map_grimoire_skills(grimoire_data):
 
 def parse_grimoire(grimoire_data):
     """Wrapper function."""
+    validity = True
     if set("".join(grimoire_data)) == set(["0"]):
-        return {
-            "valid": False,
-            "hex": "".join(grimoire_data)
-        }
+        validity = False
 
     # # print(len(grimoire_data))
     # # print("\t".join([str(x) for x in grimoire_data]))
@@ -157,7 +157,7 @@ def parse_grimoire(grimoire_data):
     g_skills = map_grimoire_skills(grimoire_data)
 
     return {
-        "valid": True,
+        "valid": validity,
         "class": g_class,
         "class_hex": g_class_hex,
         "quality": g_qual,
