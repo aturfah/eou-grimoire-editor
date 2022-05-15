@@ -207,20 +207,17 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
     all_grimoire_str = ""
     for grimoire_datum in grimoire_list:
         grimoire_str = ""
-        if grimoire_datum["valid"] is True:
-            # pprint(grimoire_datum)
-            grimoire_str += "".join(grimoire_datum["class_hex"])
-            grimoire_str += "".join(grimoire_datum["quality_hex"])
-            grimoire_str += "".join(grimoire_datum["type_hex"])
-            grimoire_str += "".join(grimoire_datum["generator"])
+        # pprint(grimoire_datum)
+        grimoire_str += "".join(grimoire_datum["class_hex"])
+        grimoire_str += "".join(grimoire_datum["quality_hex"])
+        grimoire_str += "".join(grimoire_datum["type_hex"])
+        grimoire_str += "".join(grimoire_datum["generator"])
 
-            for skill_datum in grimoire_datum["skills"]:
-                grimoire_str += skill_datum["_id"]
-                grimoire_str += "".join(skill_datum["level_hex"])
+        for skill_datum in grimoire_datum["skills"]:
+            grimoire_str += skill_datum["_id"]
+            grimoire_str += "".join(skill_datum["level_hex"])
 
-            all_grimoire_str += grimoire_str
-        else:
-            all_grimoire_str += grimoire_datum["hex"]
+        all_grimoire_str += grimoire_str
 
     REL_GRIM_START = 2 * GRIMOIRE_START
 
