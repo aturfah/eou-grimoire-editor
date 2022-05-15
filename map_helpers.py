@@ -33,7 +33,7 @@ GRIMOIRE_CLASS_MAP = {
 
 def map_grimoire_class(grimoire_data):
     """First two bytes determine class"""
-    grimoire_class_tuple = tuple(grimoire_data[:2])
+    grimoire_class_tuple = grimoire_data[:2]
     # print("\tClass Hex:", grimoire_class_tuple)
     try:
         grimoire_class = GRIMOIRE_CLASS_MAP[grimoire_class_tuple[1]]
