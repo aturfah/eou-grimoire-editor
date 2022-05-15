@@ -1,0 +1,285 @@
+HP Up
+TP Up
+ATK Up
+DEF Up
+Axe Mastery
+Sword Mastery
+Double Strike
+War Cry
+Strike Chaser
+Recover
+Boomerang Axe
+Raging Edge
+Tornado
+Falcon Slash
+Fire Chaser
+Ice Chaser
+Volt Chaser
+Power Crush
+Stunning Smash
+Head Bash
+Mine
+Blinding Slap
+Savage Cry
+Triple Charge
+Fire Chaser
+Ice Chaser
+Volt Chaser
+Savage Cry
+Strike Chaser
+HP Up
+TP Up
+AGI Up
+Bow Mastery
+Predator
+Awareness
+Act First
+Trickery
+Hasten
+Chain Dance
+Endorphins
+Quick Step
+Power Shot
+Multi-Shot
+Disabling Shot
+Sagittarius Shot
+Owl-Eye
+Stalker
+Chop
+Mine
+Take
+Efficiency
+Sure Shot
+Resuscitate
+Sagittarius Shot
+HP Up
+TP Up
+DEF Up
+Shield Mastery
+Aegis
+En Garde
+Provoke
+Flee
+Parry
+Fortify
+Defender
+Front Guard
+Rear Guard
+Fire Wall
+Volt Wall
+Ice Wall
+Shield Smite
+Cure
+Party Cure
+Prayer
+Mine
+Shield Rush
+Safe Passage
+Bravery's Gift
+HP Up
+TP Up
+ATK Up
+Whip Mastery
+Sword Mastery
+Boost Up
+Wrath's Might
+Shadow Veil
+Viper
+Gag
+Shackles
+Cuffs
+Ecstasy
+Climax
+Hypno Bite
+Nerve Bite
+Mirage Bite
+Drain Bite
+Bait
+Catastrophe
+Take
+Dark Curse
+Bind Heart
+Soul Liberator
+Bait
+Bait
+HP Up
+TP Up
+ATK Up
+Heal Mastery
+Curare
+Scavenge
+Focus
+Cure
+Heal
+Diagnosis
+Salve
+Anaesthetic
+Revive
+Unbind
+Refresh
+Immunize
+CPR
+Regenerate
+Caduceus
+Toxin Injection
+Chop
+Safe Passage
+Delayed Heal
+Clear Strike
+Regenerate
+Delayed Heal
+TP Up
+Formula Mastery
+Light Formula
+Pain Formula
+Firelight
+Scavenge
+Focus
+Fire Formula
+Flame Formula
+Inferno Formula
+Ice Formula
+Freeze Formula
+Cocytus Formula
+Volt Formula
+Spark Formula
+Thor Formula
+Flee
+Light Tincture
+Sight Formula
+Return Formula
+Chop
+Analysis
+Alchemy
+Dilution
+Light Strike
+HP Up
+TP Up
+Song Mastery
+Holy Gift
+Warrior Song
+Shelter Song
+Skanda Song
+Eerie Chorus
+Recovery Aria
+Barbaric March
+Fire Prelude
+Ice Prelude
+Volt Prelude
+Flame Fantasia
+Frost Fantasia
+Shock Fantasia
+Healing Lullaby
+Peace Ballad
+Frightful Yawl
+Restful Tune
+Take
+Insight Melody
+Echoing Rondo
+Taboo Rondo
+Healing Lullaby
+Peace Ballad
+Echoing Rondo
+HP Up
+TP Up
+ATK Up
+Katana Mastery
+Severing Slash
+Crit Up
+Breath
+Slantwise Cut
+Upper Stance
+Horse Slash
+Swallow Strike
+Flame Grater
+Clear Stance
+Razor Dodge
+Arm Strike
+Lightning Stab
+Drawing Stance
+Beheading Cut
+Charging Slash
+Frigid Slash
+Mine
+Indomitable Cry
+Peerless Stance
+Perfect Chaser
+Perfect Chaser
+Severing Slash
+HP Up
+TP Up
+Curse Mastery
+Staggering Word
+Sapping Curse
+Frailty Curse
+Leaden Curse
+Blinding Curse
+Relapse Curse
+Cranial Curse
+Abdomen Curse
+Immobile Curse
+Torpor Curse
+Corrupt Curse
+Revenge Curse
+Evil Eye
+Muting Word
+Conflict Word
+Suicide Word
+Luring Whisper
+Chop
+Madness Curse
+Deceit Curse
+Stoning Curse
+Staggering Word
+HP Up
+ATK Up
+DEF Up
+Spear Mastery
+Bloodlust
+Turning Tide
+Battle Instinct
+Draining Thrust
+Draining Burst
+Legion Thrust
+Legion Burst
+Delayed Charge
+Cross Charge
+Long Thrust
+Head Pierce
+Spear Assist
+Limitless
+Stigmata
+Black Sabbath
+Blood Fortune
+Mine
+Allied Bonds
+Spirit Shield
+Bloody Offense
+Bloodlust
+Delayed Charge
+Cross Charge
+Battle Instinct
+HP Up
+ATK Up
+Gun Mastery
+Double Strike
+High Caliber
+Penetrator
+Recharge
+Medic Bullet
+Head Snipe
+Arm Snipe
+Leg Snipe
+Fire Rounds
+Charged Fire
+Ice Rounds
+Charged Ice
+Volt Rounds
+Charged Volt
+Cover Fire
+Shell Shock
+Ricochet
+Take
+Vulcan Stance
+Charged Shot
+Action Boost
