@@ -106,7 +106,8 @@ class Root(Tk):
             grimoire_class_frame,
             grimoire_class_var,
             "",
-            *list(uih.class_id_map())
+            *list(uih.class_id_map()),
+            command=lambda e: self._update_grim_class(e)
         )
         grimoire_class_var.set(chosen_grimoire["class"])
         grimoire_class_dropdown.grid(row=0, column=1)
@@ -179,8 +180,11 @@ class Root(Tk):
             skill_level_var.set(chosen_grimoire["skills"][idx]["level"])
             skill_level_entry.grid(row=idx+1, column=2)
 
-    def _update_grim_skill0(self, event):
-        self._update_grimoire_skills(0, self.skill0_option_var.get())
+    def _update_grim_class(self, new_class):
+        self.grimoire_data[self.chosen_idx]["class"] = new_class
+        self.grimoire_data[self.chosen_idx]["class_hex"][1] = uih.class_id_map()[new_class]
+
+        pprint(self.grimoire_data[self.chosen_idx])
 
     def _update_grimoire_levels(self, index, new_level):
         self.grimoire_data[self.chosen_idx]["skills"][index]["level"] = new_level
