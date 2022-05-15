@@ -36,6 +36,7 @@ class Root(Tk):
         self.loaded_label.grid(row=2, column=1)
 
         ## Get the grimoire listbox
+        self.chosen_idx = 0
         self.grimoire_choices = StringVar(value=[])
         self.grimoire_disp_list = Listbox(self, listvariable=self.grimoire_choices, height=15)
         self.grimoire_disp_list.grid(row=3, column=1)
@@ -58,6 +59,8 @@ class Root(Tk):
         index = int(w.curselection()[0])
         value = self.grimoire_data[index]
         print("You selected item {}:".format(index))
+        self.chosen_idx = index
+        self._create_grimoire_dataframe()
         print(value)
 
     def _load_wrapper(self):
@@ -76,8 +79,12 @@ class Root(Tk):
         ## Get everything functional
         self.grimoire_choices.set([x for x in range(1, len(self.grimoire_data) + 1)])
         self.save_button["state"] = NORMAL
+        self._create_grimoire_dataframe()
 
         print(len(self.grimoire_data), len(self.file_hex))
+
+    def _create_grimoire_dataframe(self):
+        print("Hello!", self.chosen_idx)
 
     def _save_wrapper(self):
         if not self.file_loaded:
