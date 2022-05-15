@@ -205,12 +205,13 @@ def parse_grimoire_file(fname):
 
     return grimoire_info, "".join(file_hex)
 
-base_grimoires, base_hex = parse_grimoire_file("backups/base_mod/mor1rgame.sav")
-# delvr_grimoires, delvr_hex = parse_grimoire_file("backups/delete-voltrounds")
-# delchaser_grimoires, delchaser_hex = parse_grimoire_file("backups/delete-chaser")
+base_grimoires, base_hex = parse_grimoire_file("backups/base/mor1rgame.sav")
 
 with open("base.json", 'w') as out_file:
     json.dump(base_grimoires, out_file, indent=2)
+
+# delvr_grimoires, delvr_hex = parse_grimoire_file("backups/delete-voltrounds")
+# delchaser_grimoires, delchaser_hex = parse_grimoire_file("backups/delete-chaser")
 
 # with open("del_vr.json", 'w') as out_file:
 #     json.dump(delvr_grimoires, out_file, indent=2)
@@ -218,10 +219,18 @@ with open("base.json", 'w') as out_file:
 # with open("del_chaser.json", "w") as out_file:
 #     json.dump(delchaser_grimoires, out_file, indent=2)
 
+## Make an Edit to the first Grimoire
+base_grimoires[0]["skills"][0]["_id"] = "0700"
+base_grimoires[0]["skills"][0]["level_hex"] = ["08", "00"]
 
-def write_sav_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
+with open("base_mod.json", 'w') as out_file:
+    json.dump(base_grimoires, out_file, indent=2)
+
+
+def write_sav_file(file_hex, grimoire_list, output_file="backups/base_mod/mor1rgame.sav"):
     all_grimoire_str = ""
     for grimoire_datum in grimoire_list:
+        pprint(grimoire_datum)
         grimoire_str = ""
         if grimoire_datum["valid"]:
             grimoire_str += "".join(grimoire_datum["class_hex"])
