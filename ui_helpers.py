@@ -16,3 +16,12 @@ def name_id_map():
         output[temp[key]] = key
 
     return output
+
+def class_id_map():
+    """Get the reverse for the map from GRIMOIRE_CLASS_MAP"""
+    output = {}
+    temp = mh.GRIMOIRE_CLASS_MAP
+    for key in temp.keys():
+        output[temp[key]] = key
+
+    return output

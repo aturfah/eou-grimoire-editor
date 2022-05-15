@@ -90,11 +90,28 @@ class Root(Tk):
         print("Hello!", self.chosen_idx)
         chosen_grimoire = self.grimoire_data[self.chosen_idx]
 
-        ## Skill 1 Name Dropdown
         self.chosen_grimoire_frame = ttk.Frame(self)
         self.chosen_grimoire_frame.grid(row=2, column=2, rowspan=8)
 
-        ## First Skill
+        ## Make the Grimoire type dropdown
+        grimoire_class_frame = ttk.Frame(self.chosen_grimoire_frame)
+        grimoire_class_frame.grid(row=0, column=0, columnspan=2)
+        grimoire_class_label = ttk.Label(
+            grimoire_class_frame, text="Class:"
+        )
+        grimoire_class_label.grid(row=0, column=0)
+
+        grimoire_class_var = StringVar()
+        grimoire_class_dropdown = ttk.OptionMenu(
+            grimoire_class_frame,
+            grimoire_class_var,
+            "",
+            *list(uih.class_id_map())
+        )
+        grimoire_class_var.set(chosen_grimoire["class"])
+        grimoire_class_dropdown.grid(row=0, column=1)
+
+        ## Make the skill dropdowns
         grimoire_skills = sorted([x for x in self.name_id_map.keys()])
         self.skill1_option_var = StringVar(self.chosen_grimoire_frame)
         self.skill2_option_var = StringVar(self.chosen_grimoire_frame)
@@ -139,7 +156,7 @@ class Root(Tk):
             skill_name_label = ttk.Label(
                 self.chosen_grimoire_frame, text="Skill #{}:".format(idx+1)
             )
-            skill_name_label.grid(row=idx, column=0)
+            skill_name_label.grid(row=idx+1, column=0)
 
             skill_name_dropdown = AutocompleteCombobox(
                 self.chosen_grimoire_frame,
@@ -150,17 +167,17 @@ class Root(Tk):
             skill_name_dropdown.bind("<<ComboboxSelected>>",
                 skill_update_lambdas[idx])
             option_vars[idx].set(chosen_grimoire["skills"][idx]["name"])
-            skill_name_dropdown.grid(row=idx, column=1)
+            skill_name_dropdown.grid(row=idx+1, column=1)
 
             skill_level_var = StringVar(self.chosen_grimoire_frame)
             skill_level_entry = ttk.OptionMenu(
                 self.chosen_grimoire_frame,
                 skill_level_var,
-                *[x for x in range(1, 11)],
+                *[x for x in range(0, 11)],
                 command=level_update_lambdas[idx]
             )
             skill_level_var.set(chosen_grimoire["skills"][idx]["level"])
-            skill_level_entry.grid(row=idx, column=2)
+            skill_level_entry.grid(row=idx+1, column=2)
 
     def _update_grim_skill0(self, event):
         self._update_grimoire_skills(0, self.skill0_option_var.get())

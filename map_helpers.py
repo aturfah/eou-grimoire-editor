@@ -16,11 +16,7 @@ def load_skill_ids():
     return output
 
 
-def map_grimoire_class(grimoire_data):
-    """First two bytes determine class"""
-    grimoire_class_tuple = tuple(grimoire_data[:2])
-    # print("\tClass Hex:", grimoire_class_tuple)
-    class_map = {
+GRIMOIRE_CLASS_MAP = {
         "00": "Landsknecht (Sword/Axe)",
         "01": "Survivalist (Bow)",
         "02": "Protector (Shield)",
@@ -34,8 +30,13 @@ def map_grimoire_class(grimoire_data):
         "0a": "Gunner (Gun)"
     }
 
+
+def map_grimoire_class(grimoire_data):
+    """First two bytes determine class"""
+    grimoire_class_tuple = tuple(grimoire_data[:2])
+    # print("\tClass Hex:", grimoire_class_tuple)
     try:
-        grimoire_class = class_map[grimoire_class_tuple[1]]
+        grimoire_class = GRIMOIRE_CLASS_MAP[grimoire_class_tuple[1]]
     except Exception:
         grimoire_class = "???"
     # print("\t\tClass:", grimoire_class)
