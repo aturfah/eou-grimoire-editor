@@ -21,11 +21,21 @@ class Root(Tk):
         ## Get load/save buttons ready
         self.buttonframe = Frame(self)
         self.buttonframe.grid(row=1, column=0, columnspan=2)
-        load_button = ttk.Button(text="Load File")
+        load_button = ttk.Button(text="Load File", command=self.load_wrapper)
         load_button.grid(row=1, column=0)
-        save_button = ttk.Button(text="Save File")
+        save_button = ttk.Button(text="Save File", command=self.save_wrapper)
         save_button.grid(row=1, column=2)
 
+        ## Set the variables
+        self.file_hex = None
+        self.grimoire_data = []
+        self.name_id_map = uih.name_id_map()
+
+    def load_wrapper(self):
+        uih.load_wrapper("")
+
+    def save_wrapper(self):
+        uih.save_wrapper(self.file_hex, self.grimoire_data)
  
 root = Root()
 root.mainloop()
