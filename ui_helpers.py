@@ -2,6 +2,7 @@ import map_helpers as mh
 
 def save_wrapper(file_hex, grimoire_list):
     print("Save Wrapper")
+    mh.write_save_file(file_hex, grimoire_list)
 
 def load_wrapper(filename):
     print("Load Wrapper")
