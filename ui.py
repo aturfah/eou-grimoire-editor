@@ -174,7 +174,7 @@ class Root(Tk):
             skill_level_entry = ttk.OptionMenu(
                 self.chosen_grimoire_frame,
                 skill_level_var,
-                *[x for x in range(0, 11)],
+                *[x for x in range(-1, 11)],
                 command=level_update_lambdas[idx]
             )
             skill_level_var.set(chosen_grimoire["skills"][idx]["level"])
