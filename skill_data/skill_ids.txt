@@ -84,7 +84,7 @@ Prayer	81	51	00
 Mine	82	52	00
 Shield Rush	83	53	00
 Safe Passage	84	54	00
-Bravery’s Gift	85	55	00
+Bravery's Gift	85	55	00
 DUMMY	86	56	00
 DUMMY	87	57	00
 DUMMY	88	58	00
@@ -97,7 +97,7 @@ ATK Up	94	5E	00
 Whip Mastery	95	5F	00
 Sword Mastery	96	60	00
 Boost Up	97	61	00
-Wrath’s Might	98	62	00
+Wrath's Might	98	62	00
 Shadow Veil	99	63	00
 Viper	100	64	00
 Gag	101	65	00
@@ -333,7 +333,7 @@ DUMMY	330	4A	01
 DUMMY	331	4B	01
 Wolf Pack	332	4C	01
 Forest Guardian	333	4D	01
-Queen’s Mark	334	4E	01
+Queen's Mark	334	4E	01
 Abyssal Prayer	335	4F	01
 Phoenix Wings	336	50	01
 Yggdra Vaccine	337	51	01
@@ -636,9 +636,9 @@ Stun	633	79	02
 Cure	634	7A	02
 Holy Veil	635	7B	02
 Crunch	636	7C	02
-Queen’s Verdict	637	7D	02
+Queen's Verdict	637	7D	02
 Duster	638	7E	02
-Ruler’s Eye	639	7F	02
+Ruler's Eye	639	7F	02
 Ice Breath	640	80	02
 Flood	641	81	02
 Tackle	642	82	02
@@ -668,9 +668,9 @@ Revenge Curse	665	99	02
 Thousand Nails	666	9A	02
 Tempest	667	9B	02
 Infernal Drain	668	9C	02
-King’s Resolve	669	9D	02
+King's Resolve	669	9D	02
 Eternal Trunk	670	9E	02
-King’s Pride	671	9F	02
+King's Pride	671	9F	02
 Root Cyclone	672	A0	02
 Land Slash	673	A1	02
 Demonic Rush	674	A2	02
@@ -709,7 +709,7 @@ Tendril Thrash	706	C2	02
 Vampiric Kiss	707	C3	02
 Ancient Pollen	708	C4	02
 Spider Lily	709	C5	02
-Demon’s Croon	710	C6	02
+Demon's Croon	710	C6	02
 Dark Claw	711	C7	02
 Poison Tail	712	C8	02
 Petra Voice	713	C9	02
@@ -832,7 +832,7 @@ Mirror Shield	829	3D	03
 Hard Barrier	830	3E	03
 Surge Buffer	831	3F	03
 Titanium Shell	832	40	03
-King’s Resolve	833	41	03
+King's Resolve	833	41	03
 Root Cyclone	834	42	03
 Ancient Pollen	835	43	03
 NONE	836	44	03
