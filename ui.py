@@ -65,6 +65,7 @@ class Root(Tk):
         index = int(w.curselection()[0])
         self.chosen_idx = index
         self._create_grimoire_dataframe()
+        print("Now chosen Grimoire #{}".format(index))
 
     def _load_wrapper(self):
         filename = filedialog.askopenfilename(filetypes=[("SAV files", ".sav")])
@@ -84,10 +85,9 @@ class Root(Tk):
         self.save_button["state"] = NORMAL
         self._create_grimoire_dataframe()
 
-        print(len(self.grimoire_data), len(self.file_hex))
+        print("Successfully loaded {}".format(filename))
 
     def _create_grimoire_dataframe(self):
-        print("Hello!", self.chosen_idx)
         chosen_grimoire = self.grimoire_data[self.chosen_idx]
 
         self.chosen_grimoire_frame = ttk.Frame(self)
@@ -186,19 +186,26 @@ class Root(Tk):
         self.grimoire_data[self.chosen_idx]["class"] = new_class
         self.grimoire_data[self.chosen_idx]["class_hex"][1] = uih.class_id_map()[new_class]
 
-        pprint(self.grimoire_data[self.chosen_idx])
+        print("Grimoire #{gidx} Class now {cls}".format(
+            gidx=self.chosen_idx, cls=new_class
+        ))
 
     def _update_grimoire_levels(self, index, new_level):
         self.grimoire_data[self.chosen_idx]["skills"][index]["level"] = new_level
         self.grimoire_data[self.chosen_idx]["skills"][index]["level_hex"] = [format(new_level, 'x').zfill(2), "00"]
 
-        print(self.grimoire_data[self.chosen_idx]["skills"][index])
+        print("Grimoire #{gidx} Skill #{sidx} Level now {lvl}".format(
+            gidx=self.chosen_idx, sidx=index, lvl=new_level
+        ))
 
     def _update_grimoire_skills(self, index, new_name):
         self.grimoire_data[self.chosen_idx]["skills"][index]["name"] = new_name
         self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
 
-        print(self.grimoire_data[self.chosen_idx]["skills"][index])
+        print("Grimoire #{gidx} Skill #{sidx} Skill now {skl}".format(
+            gidx=self.chosen_idx, sidx=index, skl=new_name
+        ))
+
 
     def _save_wrapper(self):
         if not self.file_loaded:
