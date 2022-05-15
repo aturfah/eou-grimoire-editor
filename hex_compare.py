@@ -1,32 +1,13 @@
 from pathlib import Path
 from pprint import pprint
+import json
 
-base_b = Path("backups/base/mor1rgame.sav").read_bytes()
-posdel_b = Path("backups/delete-chaser/mor1rgame.sav").read_bytes()
-
-# base_hex = ["{:02x}".format(c) for c in base_b]
-base_hex = base_b.hex(" ").split(" ")
-posdel_hex = ["{:02x}".format(c) for c in posdel_b]
-
-print(len(base_hex))
-print(len(posdel_hex))
-
-
-grimoire_start = int(0x3C58)
+GRIMOIRE_START = int(0x3C58)
 
 """
 Based on NA version, Grimoires start at the offset 0x3C58.
 Each length is 46 (hex) or 70 (dec)
 """
-
-num_bytes = len(posdel_hex)
-counter = 0
-# for idx in range(grimoire_start, num_bytes):
-#     if base_hex[idx] != posdel_hex[idx]:
-#         counter += 1
-#         print(idx, base_hex[idx], posdel_hex[idx])
-
-# print(counter)
 
 def load_skill_ids():
     """Map the Little Endian ID Tuple to Skill Name"""
@@ -38,7 +19,7 @@ def load_skill_ids():
         except Exception:
             pass
 
-        output[(leID1.lower(), leID2.lower())] = name
+        output[" ".join((leID1.lower(), leID2.lower()))] = name
 
     return output
 
@@ -143,7 +124,7 @@ def map_grimoire_skills(grimoire_data):
         current_skill.append(gsd)
 
         if len(current_skill) == 4:
-            skill_id = tuple(current_skill[:2])
+            skill_id = " ".join(tuple(current_skill[:2]))
             skill_name = skill_id_map[skill_id]
             skill_level = tuple(current_skill[2:])
             skill_level = int(skill_level[0], 16)
@@ -165,11 +146,9 @@ def map_grimoire_skills(grimoire_data):
 
 
 def parse_grimoire(grimoire_data):
-    """
-    
-    """
+    """Wrapper function."""
     if set("".join(grimoire_data)) == set(["0"]):
-        return
+        return {}
 
     # print(len(grimoire_data))
     # print("\t".join([str(x) for x in grimoire_data]))
@@ -191,18 +170,46 @@ def parse_grimoire(grimoire_data):
     }
 
 
-grimoire_info = []
-grimoire_data = []
-counter = 1
-for idx in range(grimoire_start, num_bytes):
-    grimoire_data.append(base_hex[idx])
-    if len(grimoire_data) == 70:
-        print("Grimoire #{}".format(counter))
-        # grimoire_data = "00	02	04	01	07	00	82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	48	00	0A	00	89	00	0A	00	B1	01	0A	00	04	02	0A	00	02	00	0A	00	03	00	0A	00	41	00	0A	00".lower().split("\t")
-        grimoire_info.append(parse_grimoire(grimoire_data))
-        # break
-        counter += 1
-        grimoire_data = []
+def parse_grimoire_file(fname):
+    fname_path = Path(fname)
+    if fname_path.is_dir():
+        fname_path = fname_path.joinpath("mor1rgame.sav")
 
-    if counter == 99:
-        break
+    file_bytes = fname_path.read_bytes()
+    file_hex = file_bytes.hex(" ").split(" ")
+    num_bytes = len(file_hex)
+
+    grimoire_info = []
+    grimoire_data = []
+    counter = 1
+    for idx in range(GRIMOIRE_START, num_bytes):
+        grimoire_data.append(file_hex[idx])
+        if len(grimoire_data) == 70:
+            print("Grimoire #{}".format(counter))
+            # grimoire_data = "00	02	04	01	07	00	82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	48	00	0A	00	89	00	0A	00	B1	01	0A	00	04	02	0A	00	02	00	0A	00	03	00	0A	00	41	00	0A	00".lower().split("\t")
+            g_info = parse_grimoire(grimoire_data)
+            if g_info:
+                grimoire_info.append(g_info)
+            # break
+            counter += 1
+            grimoire_data = []
+
+        if counter == 99:
+            break
+
+    return grimoire_info
+
+base_grimoires = parse_grimoire_file("backups/base/mor1rgame.sav")
+delvr_grimoires = parse_grimoire_file("backups/delete-voltrounds")
+delchaser_grimoires = parse_grimoire_file("backups/delete-chaser")
+
+"""
+with open("base.json", 'w') as out_file:
+    json.dump(base_grimoires, out_file, indent=2)
+
+with open("del_vr.json", 'w') as out_file:
+    json.dump(delvr_grimoires, out_file, indent=2)
+
+with open("del_chaser.json", "w") as out_file:
+    json.dump(delchaser_grimoires, out_file, indent=2)
+"""
