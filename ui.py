@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog, messagebox
 
+from pprint import pprint
 
 import ui_helpers as uih
 
@@ -23,9 +24,9 @@ class Root(Tk):
         ## Get load/save buttons ready
         self.buttonframe = Frame(self)
         self.buttonframe.grid(row=1, column=0, columnspan=2)
-        self.load_button = ttk.Button(text="Load File", command=self._load_wrapper)
+        self.load_button = ttk.Button(self.buttonframe, text="Load File", command=self._load_wrapper)
         self.load_button.grid(row=1, column=1)
-        self.save_button = ttk.Button(text="Save File", state=DISABLED, command=self._save_wrapper)
+        self.save_button = ttk.Button(self.buttonframe, text="Save File", state=DISABLED, command=self._save_wrapper)
         self.save_button.grid(row=1, column=3)
 
         ## This text determines if loaded
@@ -57,11 +58,8 @@ class Root(Tk):
         # Note here that Tkinter passes an event object to onselect()
         w = evt.widget
         index = int(w.curselection()[0])
-        value = self.grimoire_data[index]
-        print("You selected item {}:".format(index))
         self.chosen_idx = index
         self._create_grimoire_dataframe()
-        print(value)
 
     def _load_wrapper(self):
         filename = filedialog.askopenfilename(filetypes=[("SAV files", ".sav")])
@@ -85,6 +83,7 @@ class Root(Tk):
 
     def _create_grimoire_dataframe(self):
         print("Hello!", self.chosen_idx)
+        pprint(self.grimoire_data[self.chosen_idx])
 
     def _save_wrapper(self):
         if not self.file_loaded:
