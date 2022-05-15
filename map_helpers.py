@@ -13,6 +13,18 @@ def load_skill_ids():
 
         output["".join((leID1.lower().zfill(2), leID2.lower().zfill(2)))] = name
 
+    valid_skills = Path("skill_data/player_skills.txt").read_text().splitlines()
+    valid_skills.extend(Path("skill_data/enemy_skills.txt").read_text().splitlines())
+
+    keys_to_delete = []
+    for key in output:
+        if output[key] in valid_skills or output[key] == "Blank":
+            continue
+        keys_to_delete.append(key)
+    
+    for key in keys_to_delete:
+        del output[key]
+
     return output
 
 
