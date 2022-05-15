@@ -42,9 +42,12 @@ class Root(Tk):
         self.grimoire_frame = ttk.Frame(self)
         self.grimoire_frame.grid(row=2, column=2, columnspan=8)
         self.grimoire_choices = StringVar(value=[])
-        self.grimoire_disp_list = Listbox(self, listvariable=self.grimoire_choices, height=15)
+        self.grimoire_disp_list = Listbox(self,
+            listvariable=self.grimoire_choices,
+            height=15, exportselection=False)
         self.grimoire_disp_list.grid(row=3, column=1)
         self.grimoire_disp_list.bind('<<ListboxSelect>>', self._on_listbox_select)
+
 
         ## Set the Grimoire variables
         self.file_hex = None
@@ -87,30 +90,27 @@ class Root(Tk):
     def _create_grimoire_dataframe(self):
         print("Hello!", self.chosen_idx)
         chosen_grimoire = self.grimoire_data[self.chosen_idx]
-        pprint(chosen_grimoire)
 
-        self.grimoire_frame.destroy()
         ## Skill 1 Name Dropdown
-        self.grimoire_frame = ttk.Frame(self)
-        self.grimoire_frame.grid(row=2, column=2, columnspan=8)
+        self.chosen_grimoire_frame = ttk.Frame(self)
+        self.chosen_grimoire_frame.grid(row=2, column=2, columnspan=8)
 
         ## First Skill
         grimoire_skills = sorted([x for x in self.name_id_map.keys()])
 
         skill0_name_label = ttk.Label(
-            self.grimoire_frame, text="Skill #1:"
+            self.chosen_grimoire_frame, text="Skill #1:"
         )
         skill0_name_label.grid(row=0, column=0)
         self.skill0_option_var = StringVar(self)
         skill0_name_dropdown = AutocompleteCombobox(
-            self.grimoire_frame,
+            self.chosen_grimoire_frame,
             textvariable=self.skill0_option_var
         )
         skill0_name_dropdown.set_completion_list(grimoire_skills)
         skill0_name_dropdown["values"] = grimoire_skills
         # skill0_name_dropdown["state"] = "readonly"
         skill0_name_dropdown.bind('<<ComboboxSelected>>', self._update_grim_skill0)
-        skill0_name_dropdown.bind('<KeyRelease>', )
         self.skill0_option_var.set(chosen_grimoire["skills"][0]["name"])
         skill0_name_dropdown.grid(row=0, column=1)
         
@@ -120,7 +120,6 @@ class Root(Tk):
         self._update_grimoire_skills(0, self.skill0_option_var.get())
 
     def _update_grimoire_skills(self, index, new_name):
-        print(self.grimoire_data[self.chosen_idx])
         self.grimoire_data[self.chosen_idx]["skills"][index]["name"] = new_name
         self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
 
