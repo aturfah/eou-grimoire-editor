@@ -10,5 +10,5 @@ with open("base.json", 'w') as out_file:
 with open("override.json", 'r') as in_file:
     override_grimoires = json.load(in_file)
 
-write_save_file(base_hex, base_grimoires)
+# write_save_file(base_hex, base_grimoires)
 write_save_file(base_hex, override_grimoires)

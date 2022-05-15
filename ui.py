@@ -5,6 +5,7 @@ from tkinter import filedialog, messagebox
 from pprint import pprint
 
 import ui_helpers as uih
+from tkinter_complete import AutocompleteCombobox
 
 class Root(Tk):
     def __init__(self):
@@ -19,10 +20,10 @@ class Root(Tk):
             text="EOU Grimoire Editor",
             anchor=CENTER)
         header.config(font=("EOU Grimoire Editor", 16))
-        header.grid(row =0, column=1, padx=5,pady=5)
+        header.grid(row=0, column=1, padx=5,pady=5)
 
         ## Get load/save buttons ready
-        self.buttonframe = Frame(self)
+        self.buttonframe = ttk.Frame(self)
         self.buttonframe.grid(row=1, column=0, columnspan=2)
         self.load_button = ttk.Button(self.buttonframe, text="Load File", command=self._load_wrapper)
         self.load_button.grid(row=1, column=1)
@@ -38,6 +39,8 @@ class Root(Tk):
 
         ## Get the grimoire listbox
         self.chosen_idx = 0
+        self.grimoire_frame = ttk.Frame(self)
+        self.grimoire_frame.grid(row=2, column=2, columnspan=8)
         self.grimoire_choices = StringVar(value=[])
         self.grimoire_disp_list = Listbox(self, listvariable=self.grimoire_choices, height=15)
         self.grimoire_disp_list.grid(row=3, column=1)
@@ -83,7 +86,43 @@ class Root(Tk):
 
     def _create_grimoire_dataframe(self):
         print("Hello!", self.chosen_idx)
-        pprint(self.grimoire_data[self.chosen_idx])
+        chosen_grimoire = self.grimoire_data[self.chosen_idx]
+        pprint(chosen_grimoire)
+
+        self.grimoire_frame.destroy()
+        ## Skill 1 Name Dropdown
+        self.grimoire_frame = ttk.Frame(self)
+        self.grimoire_frame.grid(row=2, column=2, columnspan=8)
+
+        ## First Skill
+        grimoire_skills = sorted([x for x in self.name_id_map.keys()])
+
+        skill0_name_label = ttk.Label(
+            self.grimoire_frame, text="Skill #1:"
+        )
+        skill0_name_label.grid(row=0, column=0)
+        self.skill0_option_var = StringVar(self)
+        skill0_name_dropdown = AutocompleteCombobox(
+            self.grimoire_frame,
+            textvariable=self.skill0_option_var
+        )
+        skill0_name_dropdown.set_completion_list(grimoire_skills)
+        skill0_name_dropdown["values"] = grimoire_skills
+        # skill0_name_dropdown["state"] = "readonly"
+        skill0_name_dropdown.bind('<<ComboboxSelected>>', self._update_grim_skill0)
+        skill0_name_dropdown.bind('<KeyRelease>', )
+        self.skill0_option_var.set(chosen_grimoire["skills"][0]["name"])
+        skill0_name_dropdown.grid(row=0, column=1)
+        
+        skill0_level_entry = 8
+
+    def _update_grim_skill0(self, event):
+        self._update_grimoire_skills(0, self.skill0_option_var.get())
+
+    def _update_grimoire_skills(self, index, new_name):
+        print(self.grimoire_data[self.chosen_idx])
+        self.grimoire_data[self.chosen_idx]["skills"][index]["name"] = new_name
+        self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
 
     def _save_wrapper(self):
         if not self.file_loaded:
