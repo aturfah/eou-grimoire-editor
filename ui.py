@@ -5,7 +5,7 @@ from tkinter import filedialog, messagebox
 from pprint import pprint
 
 import ui_helpers as uih
-from tkinter_complete import AutocompleteCombobox
+from tkinter_complete import AutocompleteCombobox, AutocompleteEntry
 
 class Root(Tk):
     def __init__(self):
@@ -159,14 +159,16 @@ class Root(Tk):
             )
             skill_name_label.grid(row=idx+1, column=0)
 
-            skill_name_dropdown = AutocompleteCombobox(
+            skill_name_dropdown = AutocompleteEntry(
+            # skill_name_dropdown = AutocompleteCombobox(
                 self.chosen_grimoire_frame,
                 textvariable=option_vars[idx]
             )
             skill_name_dropdown.set_completion_list(grimoire_skills)
-            skill_name_dropdown["values"] = grimoire_skills
-            skill_name_dropdown.bind("<<ComboboxSelected>>",
-                skill_update_lambdas[idx])
+            # skill_name_dropdown["values"] = grimoire_skills
+            # skill_name_dropdown.bind("<<ComboboxSelected>>",
+                # skill_update_lambdas[idx])
+            skill_name_dropdown.bind("<Return>", skill_update_lambdas[idx])
             option_vars[idx].set(chosen_grimoire["skills"][idx]["name"])
             skill_name_dropdown.grid(row=idx+1, column=1)
 
