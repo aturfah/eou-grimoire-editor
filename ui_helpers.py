@@ -5,6 +5,7 @@ def save_wrapper(file_hex, grimoire_list):
 
 def load_wrapper(filename):
     print("Load Wrapper")
+    return mh.parse_save_file(filename)
 
 def name_id_map():
     """Get the reverse for the map from load_skill_ids"""
