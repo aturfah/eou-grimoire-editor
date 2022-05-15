@@ -203,7 +203,7 @@ def parse_save_file(fname):
     return grimoire_info, "".join(file_hex)
 
 
-def write_save_file(file_hex, grimoire_list, output_file="backups/base_mod/mor1rgame.sav"):
+def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
     all_grimoire_str = ""
     for grimoire_datum in grimoire_list:
         grimoire_str = ""
