@@ -197,7 +197,7 @@ def parse_save_file(fname):
         grimoire_data.append(file_hex[idx])
         if len(grimoire_data) == 70:
             # print("Grimoire #{}".format(counter+1))
-            grimoire_data = "00	02	04	01	07	00	82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	48	00	0A	00	89	00	0A	00	B1	01	0A	00	04	02	0A	00	02	00	0A	00	03	00	0A	00	41	00	0A	00".lower().split("\t")
+            # grimoire_data = "00	02	04	01	07	00	82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	48	00	0A	00	89	00	0A	00	B1	01	0A	00	04	02	0A	00	02	00	0A	00	03	00	0A	00	41	00	0A	00".lower().split("\t")
             g_info = parse_grimoire(grimoire_data)
             if g_info:
                 grimoire_info.append(g_info)
@@ -211,7 +211,7 @@ def parse_save_file(fname):
 
     return grimoire_info, "".join(file_hex)
 
-base_grimoires, base_hex = parse_save_file("backups/base")
+base_grimoires, base_hex = parse_save_file("backups/base_mod")
 
 with open("base.json", 'w') as out_file:
     json.dump(base_grimoires, out_file, indent=2)
@@ -236,7 +236,6 @@ def write_sav_file(file_hex, grimoire_list, output_file="backups/base_mod/mor1rg
         else:
             all_grimoire_str += grimoire_datum["hex"]
 
-    print(len(file_hex))
     REL_GRIM_START = 2 * GRIMOIRE_START
 
     output_hex = file_hex[:REL_GRIM_START] + all_grimoire_str + file_hex[(REL_GRIM_START + len(all_grimoire_str)):]
@@ -244,7 +243,9 @@ def write_sav_file(file_hex, grimoire_list, output_file="backups/base_mod/mor1rg
     assert output_hex[:REL_GRIM_START] == file_hex[:REL_GRIM_START]
     assert all_grimoire_str in output_hex[REL_GRIM_START:(REL_GRIM_START+len(all_grimoire_str)+1)]
 
-    print([i for i in range(len(output_hex)) if output_hex[i] != file_hex[i]][0], GRIMOIRE_START)
+    difference_indexes = [i for i in range(len(output_hex)) if output_hex[i] != file_hex[i]]
+    if difference_indexes:
+        print(difference_indexes[0], REL_GRIM_START)
     print(file_hex[REL_GRIM_START:(REL_GRIM_START+10)])
     print(output_hex[REL_GRIM_START:(REL_GRIM_START+10)])
 
