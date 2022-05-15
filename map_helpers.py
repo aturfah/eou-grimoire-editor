@@ -173,11 +173,13 @@ def parse_save_file(fname):
     fname_path = Path(fname)
     if fname_path.is_dir():
         fname_path = fname_path.joinpath("mor1rgame.sav")
-    print(fname_path)
 
     file_bytes = fname_path.read_bytes()
     file_hex = file_bytes.hex(" ").split(" ")
     num_bytes = len(file_hex)
+
+    if GRIMOIRE_START > num_bytes:
+        raise RuntimeError("Invalid File")
 
     grimoire_info = []
     grimoire_data = []
