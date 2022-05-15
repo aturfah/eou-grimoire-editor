@@ -39,6 +39,7 @@ class Root(Tk):
         self.grimoire_choices = StringVar(value=[])
         self.grimoire_disp_list = Listbox(self, listvariable=self.grimoire_choices, height=15)
         self.grimoire_disp_list.grid(row=3, column=1)
+        self.grimoire_disp_list.bind('<<ListboxSelect>>', self._on_listbox_select)
 
         ## Set the Grimoire variables
         self.file_hex = None
@@ -47,6 +48,17 @@ class Root(Tk):
 
     def _error_message(self, title, message):
         messagebox.showerror(title, message)
+
+    def _on_listbox_select(self, evt):
+        if not self.file_loaded:
+            return
+
+        # Note here that Tkinter passes an event object to onselect()
+        w = evt.widget
+        index = int(w.curselection()[0])
+        value = self.grimoire_data[index]
+        print("You selected item {}:".format(index))
+        print(value)
 
     def _load_wrapper(self):
         filename = filedialog.askopenfilename(filetypes=[("SAV files", ".sav")])
