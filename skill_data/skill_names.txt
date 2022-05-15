@@ -1,0 +1,577 @@
+HP Up
+TP Up
+ATK Up
+DEF Up
+Axe Mastery
+Sword Mastery
+Double Strike
+War Cry
+Strike Chaser
+Recover
+Boomerang Axe
+Raging Edge
+Tornado
+Falcon Slash
+Fire Chaser
+Ice Chaser
+Volt Chaser
+Power Crush
+Stunning Smash
+Head Bash
+Mine
+Blinding Slap
+Savage Cry
+Triple Charge
+Fire Chaser
+Ice Chaser
+Volt Chaser
+Savage Cry
+Strike Chaser
+HP Up
+TP Up
+AGI Up
+Bow Mastery
+Predator
+Awareness
+Act First
+Trickery
+Hasten
+Chain Dance
+Endorphins
+Quick Step
+Power Shot
+Multi-Shot
+Disabling Shot
+Sagittarius Shot
+Owl-Eye
+Stalker
+Chop
+Mine
+Take
+Efficiency
+Sure Shot
+Resuscitate
+Sagittarius Shot
+HP Up
+TP Up
+DEF Up
+Shield Mastery
+Aegis
+En Garde
+Provoke
+Flee
+Parry
+Fortify
+Defender
+Front Guard
+Rear Guard
+Fire Wall
+Volt Wall
+Ice Wall
+Shield Smite
+Cure
+Party Cure
+Prayer
+Mine
+Shield Rush
+Safe Passage
+Bravery’s Gift
+HP Up
+TP Up
+ATK Up
+Whip Mastery
+Sword Mastery
+Boost Up
+Wrath’s Might
+Shadow Veil
+Viper
+Gag
+Shackles
+Cuffs
+Ecstasy
+Climax
+Hypno Bite
+Nerve Bite
+Mirage Bite
+Drain Bite
+Bait
+Catastrophe
+Take
+Dark Curse
+Bind Heart
+Soul Liberator
+Bait
+Bait
+HP Up
+TP Up
+ATK Up
+Heal Mastery
+Curare
+Scavenge
+Focus
+Cure
+Heal
+Diagnosis
+Salve
+Anaesthetic
+Revive
+Unbind
+Refresh
+Immunize
+CPR
+Regenerate
+Caduceus
+Toxin Injection
+Chop
+Safe Passage
+Delayed Heal
+Clear Strike
+Regenerate
+Delayed Heal
+TP Up
+Formula Mastery
+Light Formula
+Pain Formula
+Firelight
+Scavenge
+Focus
+Fire Formula
+Flame Formula
+Inferno Formula
+Ice Formula
+Freeze Formula
+Cocytus Formula
+Volt Formula
+Spark Formula
+Thor Formula
+Flee
+Light Tincture
+Sight Formula
+Return Formula
+Chop
+Analysis
+Alchemy
+Dilution
+Light Strike
+HP Up
+TP Up
+Song Mastery
+Holy Gift
+Warrior Song
+Shelter Song
+Skanda Song
+Eerie Chorus
+Recovery Aria
+Barbaric March
+Fire Prelude
+Ice Prelude
+Volt Prelude
+Flame Fantasia
+Frost Fantasia
+Shock Fantasia
+Healing Lullaby
+Peace Ballad
+Frightful Yawl
+Restful Tune
+Take
+Insight Melody
+Echoing Rondo
+Taboo Rondo
+Healing Lullaby
+Peace Ballad
+Echoing Rondo
+HP Up
+TP Up
+ATK Up
+Katana Mastery
+Severing Slash
+Crit Up
+Breath
+Slantwise Cut
+Upper Stance
+Horse Slash
+Swallow Strike
+Flame Grater
+Clear Stance
+Razor Dodge
+Arm Strike
+Lightning Stab
+Drawing Stance
+Beheading Cut
+Charging Slash
+Frigid Slash
+Mine
+Indomitable Cry
+Peerless Stance
+Perfect Chaser
+Perfect Chaser
+Severing Slash
+HP Up
+TP Up
+Curse Mastery
+Staggering Word
+Sapping Curse
+Frailty Curse
+Leaden Curse
+Blinding Curse
+Relapse Curse
+Cranial Curse
+Abdomen Curse
+Immobile Curse
+Torpor Curse
+Corrupt Curse
+Revenge Curse
+Evil Eye
+Muting Word
+Conflict Word
+Suicide Word
+Luring Whisper
+Chop
+Madness Curse
+Deceit Curse
+Stoning Curse
+Staggering Word
+HP Up
+ATK Up
+DEF Up
+Spear Mastery
+Bloodlust
+Turning Tide
+Battle Instinct
+Draining Thrust
+Draining Burst
+Legion Thrust
+Legion Burst
+Delayed Charge
+Cross Charge
+Long Thrust
+Head Pierce
+Spear Assist
+Limitless
+Stigmata
+Black Sabbath
+Blood Fortune
+Mine
+Allied Bonds
+Spirit Shield
+Bloody Offense
+Bloodlust
+Delayed Charge
+Cross Charge
+Battle Instinct
+HP Up
+ATK Up
+Gun Mastery
+Double Strike
+High Caliber
+Penetrator
+Recharge
+Medic Bullet
+Head Snipe
+Arm Snipe
+Leg Snipe
+Fire Rounds
+Charged Fire
+Ice Rounds
+Charged Ice
+Volt Rounds
+Charged Volt
+Cover Fire
+Shell Shock
+Ricochet
+Take
+Vulcan Stance
+Charged Shot
+Action Boost
+Wolf Pack
+Forest Guardian
+Queen’s Mark
+Abyssal Prayer
+Phoenix Wings
+Yggdra Vaccine
+Offering Robe
+Stone Gleam
+Siren Song
+Flood
+Thunderwing
+Revenge Plan
+Attack
+Harsh Buzz
+Poison Dust
+Sonic Rhythm
+Defense Shell
+Corrosive Aura
+Cover
+Stomp
+Snow Cover
+Arm Hammer
+Strike Up
+Baffling Step
+Charge
+Onrush
+Scythe Slash
+Evil Cry
+Silver Fang
+Binding Howl
+Sleep Breath
+Venom Breath
+Poison Sting
+Ripping Arm
+Cuff Vines
+Gouging Thorn
+Flame Shot
+Sleep Powder
+Numbing Sting
+Coconut Strike
+Tail Whip
+Drain
+Paralysis
+Binding Vine
+Ear Shredder
+Rending Claws
+Fearsome Roar
+Rush
+Bullrush
+Rising Fang
+Cling
+Jump
+Attack Unit
+Nectar Salve
+Echolocation
+Defense Unit
+Bloody Claws
+Assault
+Water Gun
+Wind Slash
+Water Splash
+Reaper Claws
+Vicious Bite
+Strikedown
+Ice Breath
+Fire Fang
+Panic Scream
+Knockdown
+Clash
+Fin Slash
+Stunning Kick
+Powerful Rage
+Fearsome Glare
+Volt Shot
+Forest Breach
+Firestorm
+Forest Barrier
+Seal Arms
+Hypnosis
+Seal Head
+Stone Gleam
+Beheader
+Silent Claw
+Heavy Shoulder
+Death Stare
+Bind Arms
+Siren Song
+Bind Head
+Curse
+Death Scythe
+Roll
+Guillotine
+Hex
+Binding String
+Cleansing Ray
+Flame Howl
+Raging Tusk
+Dancing Petals
+Nitro
+Iron Guard
+Rending Fang
+Fang Flurry
+Furious Slash
+Devour
+Evil Eye
+Frozen Scythe
+Frozen Fury
+Blind Blade
+Saw Slash
+Freeze
+White Plasma
+Toxic Breath
+Branch Flurry
+Terror Sting
+Explosion
+Spark
+Mach Slash
+Red Plasma
+Last Cry
+Earthquake
+Quick Strike
+Scissor Wrath
+Thunder Dash
+Demon Beak
+Fire Breath
+Dragon Fang
+Stance
+Lethal Glare
+Cocoon
+Blood Drain
+Stampede
+Sleep Pollen
+Toxic Tongue
+Claw Dance
+Aimed Slash
+Darkness
+Stun Needle
+Gale
+Shredding Bite
+Giant Swing
+Grinder
+Breaker Spin
+Knockout
+Double Strike
+Piercing Fang
+Cross Counter
+Horrific Roar
+Cold Fangs
+Silent Stare
+Cross Counter
+Horn Rush
+Combo Smash
+Hurricane Punch
+Stun
+Cure
+Holy Veil
+Crunch
+Queen’s Verdict
+Duster
+Ruler’s Eye
+Ice Breath
+Flood
+Tackle
+Coiling Tail
+Freeze Aura
+Aqua Veil
+Wing Talon
+Tail Strike
+Whirlwind
+Burning Ray
+Thunderwing
+Pinion Spear
+Deathbringer
+Chaosbringer
+Grip
+Wind Breath
+Slantwise Cut
+Breath
+Drawing Stance
+Beheading Cut
+Frigid Slash
+Sapping Curse
+Cranial Curse
+Abdomen Curse
+Chaos Curse
+Revenge Curse
+Thousand Nails
+Tempest
+Infernal Drain
+King’s Resolve
+Eternal Trunk
+King’s Pride
+Root Cyclone
+Land Slash
+Demonic Rush
+Activate
+Necrosis
+Armageddon
+Cell Membrane
+Segment
+Explode
+Standby
+Freezing
+Thunderstorm
+Tangling Ray
+Fire Torrent
+Resonant Roar
+Dragon Strike
+Draconic Fury
+Dragon Claw
+Message Standby
+Wyrm Quake
+Ice Torrent
+Mirror Shield
+Crushing Arm
+Cold Regen
+Wail
+Triple Strike
+Volt Torrent
+Ancient Curse
+Judgement
+Corrupting Howl
+Binding Dance
+Flame Sigh
+Frost Smile
+Lightning
+Tendril Thrash
+Vampiric Kiss
+Ancient Pollen
+Spider Lily
+Demon’s Croon
+Dark Claw
+Poison Tail
+Petra Voice
+Flash
+Rock Hammer
+Triple Hammer
+Regen
+Force Wall
+Power Wall
+Violent Rush
+Hammerhead
+Powerful Rage
+Dark Escape
+Dark Cradle
+Nightmare
+Gloom Strike
+Invisibility
+Avidya Apostle
+Avidya Apostle
+Royal Jelly
+Mirage Pollen
+Frustrated Rage
+Crushing Jaw
+Spread Shot
+Grudge
+Wild Breath
+Knockdown
+Speed Stab
+Thunderstrike
+Foot Stomp
+Random Shot
+Bank Shot
+Flamethrower
+Tread Press
+Nitro Boost
+Smoke Bomb
+Mustard Gas
+Final Weapon
+EMP
+Heavy Gatling
+Particle Beam
+Hard Barrier
+Surge Buffer
+Titanium Shell
+Glint
+Overflow
+Delete
+Auto-Guard
+Survive
+Scissor Wrath
+Scissor Wrath
+Call Front
+Angled Shot
+Cell Membrane
+Mirror Shield
+Hard Barrier
+Surge Buffer
+Titanium Shell
+King’s Resolve
+Root Cyclone
+Ancient Pollen
