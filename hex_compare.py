@@ -19,7 +19,7 @@ def load_skill_ids():
         except Exception:
             pass
 
-        output[" ".join((leID1.lower(), leID2.lower()))] = name
+        output["".join((leID1.lower(), leID2.lower()))] = name
 
     return output
 
@@ -108,7 +108,7 @@ def map_grimoire_generator(grimoire_data):
     """Bytes 6-42 should be grimoire generator"""
     temp = "82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00".split("\t")
     print("\tGG Name:", len(grimoire_data[6:42]), len(temp))
-    return tuple(grimoire_data[6:42])
+    return "".join(grimoire_data[6:42])
 
 
 def map_grimoire_skills(grimoire_data):
@@ -124,10 +124,10 @@ def map_grimoire_skills(grimoire_data):
         current_skill.append(gsd)
 
         if len(current_skill) == 4:
-            skill_id = " ".join(tuple(current_skill[:2]))
+            skill_id = "".join(tuple(current_skill[:2]))
             skill_name = skill_id_map[skill_id]
-            skill_level = tuple(current_skill[2:])
-            skill_level = int(skill_level[0], 16)
+            skill_level_hex = tuple(current_skill[2:])
+            skill_level = int(skill_level_hex[0], 16)
 
             current_skill = []
             if skill_id == ('00', '00'):
@@ -139,7 +139,8 @@ def map_grimoire_skills(grimoire_data):
             output.append({
                 "_id": skill_id,
                 "name": skill_name,
-                "level": skill_level
+                "level": skill_level,
+                "level_hex": skill_level_hex
             })
 
     return output
@@ -148,7 +149,10 @@ def map_grimoire_skills(grimoire_data):
 def parse_grimoire(grimoire_data):
     """Wrapper function."""
     if set("".join(grimoire_data)) == set(["0"]):
-        return {}
+        return {
+            "valid": False,
+            "hex": "".join(grimoire_data)
+        }
 
     # print(len(grimoire_data))
     # print("\t".join([str(x) for x in grimoire_data]))
@@ -159,6 +163,7 @@ def parse_grimoire(grimoire_data):
     g_skills = map_grimoire_skills(grimoire_data)
 
     return {
+        "valid": True,
         "class": g_class,
         "class_hex": g_class_hex,
         "quality": g_qual,
@@ -181,11 +186,11 @@ def parse_grimoire_file(fname):
 
     grimoire_info = []
     grimoire_data = []
-    counter = 1
+    counter = 0
     for idx in range(GRIMOIRE_START, num_bytes):
         grimoire_data.append(file_hex[idx])
         if len(grimoire_data) == 70:
-            print("Grimoire #{}".format(counter))
+            print("Grimoire #{}".format(counter+1))
             # grimoire_data = "00	02	04	01	07	00	82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	48	00	0A	00	89	00	0A	00	B1	01	0A	00	04	02	0A	00	02	00	0A	00	03	00	0A	00	41	00	0A	00".lower().split("\t")
             g_info = parse_grimoire(grimoire_data)
             if g_info:
@@ -195,21 +200,48 @@ def parse_grimoire_file(fname):
             grimoire_data = []
 
         if counter == 99:
+            ## Max of 99 Grimoires
             break
 
-    return grimoire_info
+    return grimoire_info, "".join(file_hex)
 
-base_grimoires = parse_grimoire_file("backups/base/mor1rgame.sav")
-delvr_grimoires = parse_grimoire_file("backups/delete-voltrounds")
-delchaser_grimoires = parse_grimoire_file("backups/delete-chaser")
+base_grimoires, base_hex = parse_grimoire_file("backups/base_mod/mor1rgame.sav")
+# delvr_grimoires, delvr_hex = parse_grimoire_file("backups/delete-voltrounds")
+# delchaser_grimoires, delchaser_hex = parse_grimoire_file("backups/delete-chaser")
 
-"""
 with open("base.json", 'w') as out_file:
     json.dump(base_grimoires, out_file, indent=2)
 
-with open("del_vr.json", 'w') as out_file:
-    json.dump(delvr_grimoires, out_file, indent=2)
+# with open("del_vr.json", 'w') as out_file:
+#     json.dump(delvr_grimoires, out_file, indent=2)
 
-with open("del_chaser.json", "w") as out_file:
-    json.dump(delchaser_grimoires, out_file, indent=2)
-"""
+# with open("del_chaser.json", "w") as out_file:
+#     json.dump(delchaser_grimoires, out_file, indent=2)
+
+
+def write_sav_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
+    all_grimoire_str = ""
+    for grimoire_datum in grimoire_list:
+        grimoire_str = ""
+        if grimoire_datum["valid"]:
+            grimoire_str += "".join(grimoire_datum["class_hex"])
+            grimoire_str += "".join(grimoire_datum["quality_hex"])
+            grimoire_str += "".join(grimoire_datum["type_hex"])
+            grimoire_str += "".join(grimoire_datum["generator"])
+            
+            for skill_datum in grimoire_datum["skills"]:
+                grimoire_str += skill_datum["_id"]
+                grimoire_str += "".join(skill_datum["level_hex"])
+
+            all_grimoire_str += grimoire_str
+        else:
+            all_grimoire_str += grimoire_datum["hex"]
+
+
+    output_hex = file_hex[:GRIMOIRE_START] + all_grimoire_str + file_hex[(GRIMOIRE_START + len(all_grimoire_str)):]
+    assert len(output_hex) == len(file_hex)
+
+    with open(output_file, "wb") as out_file:
+        out_file.write(bytes.fromhex(output_hex))
+
+write_sav_file(base_hex, base_grimoires)
