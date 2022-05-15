@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import filedialog
 
 import ui_helpers as uih
 
@@ -32,7 +33,16 @@ class Root(Tk):
         self.name_id_map = uih.name_id_map()
 
     def load_wrapper(self):
-        uih.load_wrapper("")
+        filename = filedialog.askopenfilename(filetypes=[("SAV files", ".sav")])
+        if not filename:
+            return
+
+        try:
+            self.grimoire_data, self.file_hex = uih.load_wrapper(filename)
+        except Exception:
+            pass
+
+        print(len(self.grimoire_data), len(self.file_hex))
 
     def save_wrapper(self):
         uih.save_wrapper(self.file_hex, self.grimoire_data)
