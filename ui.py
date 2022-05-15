@@ -48,7 +48,6 @@ class Root(Tk):
         self.grimoire_disp_list.grid(row=3, column=1)
         self.grimoire_disp_list.bind('<<ListboxSelect>>', self._on_listbox_select)
 
-
         ## Set the Grimoire variables
         self.file_hex = None
         self.grimoire_data = []
@@ -102,7 +101,7 @@ class Root(Tk):
             self.chosen_grimoire_frame, text="Skill #1:"
         )
         skill0_name_label.grid(row=0, column=0)
-        self.skill0_option_var = StringVar(self)
+        self.skill0_option_var = StringVar(self.chosen_grimoire_frame)
         skill0_name_dropdown = AutocompleteCombobox(
             self.chosen_grimoire_frame,
             textvariable=self.skill0_option_var
@@ -113,15 +112,34 @@ class Root(Tk):
         skill0_name_dropdown.bind('<<ComboboxSelected>>', self._update_grim_skill0)
         self.skill0_option_var.set(chosen_grimoire["skills"][0]["name"])
         skill0_name_dropdown.grid(row=0, column=1)
-        
-        skill0_level_entry = 8
+
+        self.skill0_level_var = StringVar(self.chosen_grimoire_frame)
+        skill0_level_entry = ttk.OptionMenu(
+            self.chosen_grimoire_frame,
+            self.skill0_level_var,
+            *[x for x in range(1, 11)],
+            command=self._update_grim_level0
+        )
+        self.skill0_level_var.set(chosen_grimoire["skills"][0]["level"])
+        skill0_level_entry.grid(row=0, column=2)
 
     def _update_grim_skill0(self, event):
         self._update_grimoire_skills(0, self.skill0_option_var.get())
 
+    def _update_grim_level0(self, event):
+        self._update_grimoire_levels(0, event)
+
+    def _update_grimoire_levels(self, index, new_level):
+        self.grimoire_data[self.chosen_idx]["skills"][index]["level"] = new_level
+        self.grimoire_data[self.chosen_idx]["skills"][index]["level_hex"] = [str(new_level).zfill(2), "00"]
+
+        print(self.grimoire_data[self.chosen_idx]["skills"][index])
+
     def _update_grimoire_skills(self, index, new_name):
         self.grimoire_data[self.chosen_idx]["skills"][index]["name"] = new_name
         self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
+
+        print(self.grimoire_data[self.chosen_idx]["skills"][index])
 
     def _save_wrapper(self):
         if not self.file_loaded:
