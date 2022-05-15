@@ -1,5 +1,11 @@
+## Misc stuff
 env/
 __pycache__/
 
+## Testing file stuff
 backups/
 *.json
+
+## Pyinstaller files
+*.spec
+build/
