@@ -75,14 +75,14 @@ Prayer
 Mine
 Shield Rush
 Safe Passage
-Bravery’s Gift
+Bravery's Gift
 HP Up
 TP Up
 ATK Up
 Whip Mastery
 Sword Mastery
 Boost Up
-Wrath’s Might
+Wrath's Might
 Shadow Veil
 Viper
 Gag
