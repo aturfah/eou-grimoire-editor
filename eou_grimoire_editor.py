@@ -214,8 +214,13 @@ class Root(Tk):
 
     def _update_grim_generator_field(self):
         new_name = self.grimoire_generator_var.get()
-        self.grimoire_data[self.chosen_idx]["name"] = new_name
-        self.grimoire_data[self.chosen_idx]["name_hex"] = uih.ascii_to_hex(new_name)
+        try:
+            self.grimoire_data[self.chosen_idx]["name_hex"] = uih.ascii_to_hex(new_name)
+            self.grimoire_data[self.chosen_idx]["name"] = new_name
+        except Exception:
+            self._error_message("Error", "Name too long. Try a shorter one.")
+            return
+        
         if new_name:
             self.grimoire_data[self.chosen_idx]["unknown_origin"] = False
             self.grimoire_data[self.chosen_idx]["class_hex"][0] = "00"
@@ -279,7 +284,10 @@ class Root(Tk):
             initialfile = 'mor1rgame.sav',
             confirmoverwrite=True)
 
-        uih.save_wrapper(self.file_hex, self.grimoire_data, output_file)
+        try:
+            uih.save_wrapper(self.file_hex, self.grimoire_data, output_file)
+        except Exception:
+            self._error_message("Error", "Error saving. Please verify grimoire data correct.")
  
 root = Root()
 root.mainloop()
