@@ -15,7 +15,7 @@ python eou_grimoire_editor.py
 ```
 
 
-## How to Use
+## How to Use (with pictures!)
 
 Obtain a backup of a save file for the game using `Checkpoint` or a similar tool for the 3DS. The file of interest should be called `mor1rgame.sav`. I strongly suggest backing up this save file in case things go wrong.
 
