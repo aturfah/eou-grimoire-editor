@@ -2,6 +2,9 @@
 
 ## Overview / How to use
 
+Obtain a backup of a save file for the game using `Checkpoint` or a similar tool for the 3ds. 
+
+
 ## Running
 ### Windows
 Run the `eou_grimoire_editor.exe` file from the `dist/` folder. Make sure that the `skill_data/` folder is in the same directory as the executable file, otherwise it will not run.
