@@ -152,7 +152,7 @@ class Root(Tk):
         self.skill6_option_var = StringVar(self.chosen_grimoire_frame)
         self.skill7_option_var = StringVar(self.chosen_grimoire_frame)
 
-        option_vars = [
+        self.option_vars = [
             self.skill1_option_var,
             self.skill2_option_var,
             self.skill3_option_var,
@@ -163,13 +163,13 @@ class Root(Tk):
         ]
 
         skill_update_lambdas = {
-            0: lambda e: self._update_grimoire_skills(0, option_vars[0].get()),
-            1: lambda e: self._update_grimoire_skills(1, option_vars[1].get()),
-            2: lambda e: self._update_grimoire_skills(2, option_vars[2].get()),
-            3: lambda e: self._update_grimoire_skills(3, option_vars[3].get()),
-            4: lambda e: self._update_grimoire_skills(4, option_vars[4].get()),
-            5: lambda e: self._update_grimoire_skills(5, option_vars[5].get()),
-            6: lambda e: self._update_grimoire_skills(6, option_vars[6].get()),
+            0: lambda e: self._update_grimoire_skills(0, self.option_vars[0].get()),
+            1: lambda e: self._update_grimoire_skills(1, self.option_vars[1].get()),
+            2: lambda e: self._update_grimoire_skills(2, self.option_vars[2].get()),
+            3: lambda e: self._update_grimoire_skills(3, self.option_vars[3].get()),
+            4: lambda e: self._update_grimoire_skills(4, self.option_vars[4].get()),
+            5: lambda e: self._update_grimoire_skills(5, self.option_vars[5].get()),
+            6: lambda e: self._update_grimoire_skills(6, self.option_vars[6].get()),
         }
 
         level_update_lambdas = {
@@ -192,14 +192,14 @@ class Root(Tk):
             skill_name_dropdown = AutocompleteEntry(
             # skill_name_dropdown = AutocompleteCombobox(
                 self.chosen_grimoire_frame,
-                textvariable=option_vars[idx]
+                textvariable=self.option_vars[idx]
             )
             skill_name_dropdown.set_completion_list(grimoire_skills)
             # skill_name_dropdown["values"] = grimoire_skills
             # skill_name_dropdown.bind("<<ComboboxSelected>>",
                 # skill_update_lambdas[idx])
             skill_name_dropdown.bind("<Return>", skill_update_lambdas[idx])
-            option_vars[idx].set(chosen_grimoire["skills"][idx]["name"])
+            self.option_vars[idx].set(chosen_grimoire["skills"][idx]["name"])
             skill_name_dropdown.grid(row=idx+skill_dropdown_offset, column=1)
 
             skill_level_var = StringVar(self.chosen_grimoire_frame)
@@ -228,6 +228,7 @@ class Root(Tk):
         print("Grimoire #{gidx} Generator now {name}; Unknown Origin: {unk}".format(
             gidx=self.chosen_idx+1, name=new_name, unk=self.grimoire_unknown_flag.get()
         ))
+        self._create_grimoire_dataframe()
 
 
     def _update_grim_class(self, new_class):
@@ -237,6 +238,7 @@ class Root(Tk):
         print("Grimoire #{gidx} Class now {cls}".format(
             gidx=self.chosen_idx+1, cls=new_class
         ))
+        self._create_grimoire_dataframe()
 
     def _update_grimoire_levels(self, index, new_level):
         self.grimoire_data[self.chosen_idx]["skills"][index]["level"] = new_level
@@ -245,14 +247,21 @@ class Root(Tk):
         print("Grimoire #{gidx} Skill #{sidx} Level now {lvl}".format(
             gidx=self.chosen_idx+1, sidx=index+1, lvl=new_level
         ))
+        self._create_grimoire_dataframe()
 
     def _update_grimoire_skills(self, index, new_name):
+        if new_name == "":
+            new_name = "Blank"
+            self.option_vars[index].set(new_name)
+            self._update_grimoire_levels(index, 0)
+
         self.grimoire_data[self.chosen_idx]["skills"][index]["name"] = new_name
         self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
 
         print("Grimoire #{gidx} Skill #{sidx} Skill now {skl}".format(
             gidx=self.chosen_idx+1, sidx=index+1, skl=new_name
         ))
+        self._create_grimoire_dataframe()
 
 
     def _save_wrapper(self):
