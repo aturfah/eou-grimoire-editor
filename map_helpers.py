@@ -103,7 +103,10 @@ GRIMOIRE_QUALITY_MAP = {
 def map_grimoire_quality(grimoire_data):
     """Bytes 3/4 are Quality"""
     quality_tuple = grimoire_data[2:4]
-    grimoire_quality = GRIMOIRE_QUALITY_MAP[quality_tuple[1]]
+    try:
+        grimoire_quality = GRIMOIRE_QUALITY_MAP[quality_tuple[1]]
+    except Exception:
+        raise RuntimeError("Did not expect to see Grimoire quality bytes: {}".format(quality_tuple))
     # print("\tQuality", grimoire_quality)
 
     return grimoire_quality, quality_tuple
@@ -134,7 +137,7 @@ def map_grimoire_type(grimoire_data):
         grim_type = type_map[grimoire_type_tuple[0]]
     except Exception as exc:
         grim_type = "???"
-        raise exc
+        raise RuntimeError("Did not expect to see Grimoire type bytes: {}".format(grimoire_type_tuple))
 
     # print("\tType:", grim_type)
     return grim_type, grimoire_type_tuple
@@ -188,7 +191,10 @@ def map_grimoire_skills(grimoire_data):
 
         if len(current_skill) == 4:
             skill_id = "".join(tuple(current_skill[:2]))
-            skill_name = SKILL_ID_MAP[skill_id]
+            try:
+                skill_name = SKILL_ID_MAP[skill_id]
+            except Exception:
+                raise RuntimeError("Did not expect to see skill ID: {}".format(skill_id))
             skill_level_hex = tuple(current_skill[2:])
             skill_level = int(skill_level_hex[0], 16)
 
@@ -217,11 +223,14 @@ def parse_grimoire(grimoire_data):
 
     # # print(len(grimoire_data))
     # # print("\t".join([str(x) for x in grimoire_data]))
-    g_class, g_class_hex = map_grimoire_class(grimoire_data)
-    g_qual, g_qual_hex = map_grimoire_quality(grimoire_data)
-    g_type, g_type_hex = map_grimoire_type(grimoire_data)
-    g_name, g_name_hex, unknown_origin = map_grimoire_generator(grimoire_data)
-    g_skills = map_grimoire_skills(grimoire_data)
+    try:
+        g_class, g_class_hex = map_grimoire_class(grimoire_data)
+        g_qual, g_qual_hex = map_grimoire_quality(grimoire_data)
+        g_type, g_type_hex = map_grimoire_type(grimoire_data)
+        g_name, g_name_hex, unknown_origin = map_grimoire_generator(grimoire_data)
+        g_skills = map_grimoire_skills(grimoire_data)
+    except Exception as exc:
+        raise exc
 
     return {
         "valid": validity,
