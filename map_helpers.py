@@ -1,5 +1,27 @@
 from pathlib import Path
-import os
+# from pprint import pprint
+from unicode_to_sjis import UNICODE_TO_SJIS
+from sjis_to_unicode import SJIS_TO_UNICODE
+import unicodedata
+
+
+def ascii_to_hex(str_in, padded_length=72):
+    output = []
+    for char in str_in:
+        ## Convert to full width characters
+        output.append(0xFEE0 + ord(char))
+    
+    output = "".join([UNICODE_TO_SJIS[x] for x in output])
+    output = output.replace(" ", "")
+
+    while len(output) < padded_length:
+        output += "0"
+    
+    if len(output) > padded_length:
+        raise RuntimeError("Name too Long")
+
+    return output
+
 
 def load_skill_ids():
     """Map the Little Endian ID Tuple to Skill Name"""
@@ -114,10 +136,35 @@ def map_grimoire_type(grimoire_data):
 
 
 def map_grimoire_generator(grimoire_data):
-    """Bytes 6-42 should be grimoire generator"""
-    temp = "82	71	82	81	82	91	82	95	82	8E	82	81	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00	00".split("\t")
-    # print("\tGG Name:", len(grimoire_data[6:42]), len(temp))
-    return "".join(grimoire_data[6:42])
+    """Bytes 6-42 should be grimoire generator (person who generated)"""
+    gg_hex = grimoire_data[6:42]
+    gg_unicode = []
+    cur_char = []
+    for h_number in [x.upper() for x in gg_hex]:
+        if not cur_char and h_number in SJIS_TO_UNICODE.keys():
+            gg_unicode.append(SJIS_TO_UNICODE[h_number])
+            continue
+
+        cur_char.append(h_number)
+        if len(cur_char) == 2:
+            char_hex = "".join(cur_char)
+            char_unic = SJIS_TO_UNICODE[char_hex]
+            gg_unicode.append(chr(char_unic))
+            cur_char = []
+
+    ## Entirely 0; unknown origin
+    gg_unicode = [x for x in gg_unicode if x != 0]
+    unknown_origin = False
+    if not gg_unicode:
+        unknown_origin = True
+        gg_unicode = []
+
+    gg_unicode = "".join(gg_unicode)
+    ## Names correspond to full-width characters, need half width
+    gg_unicode = unicodedata.normalize("NFKC", gg_unicode)
+    # print("\tGG Name:", len(gg_hex), gg_unicode)
+
+    return gg_unicode, "".join(gg_hex), unknown_origin
 
 
 def map_grimoire_skills(grimoire_data):
@@ -166,7 +213,7 @@ def parse_grimoire(grimoire_data):
     g_class, g_class_hex = map_grimoire_class(grimoire_data)
     g_qual, g_qual_hex = map_grimoire_quality(grimoire_data)
     g_type, g_type_hex = map_grimoire_type(grimoire_data)
-    g_generator = map_grimoire_generator(grimoire_data)
+    g_name, g_name_hex, unknown_origin = map_grimoire_generator(grimoire_data)
     g_skills = map_grimoire_skills(grimoire_data)
 
     return {
@@ -177,7 +224,9 @@ def parse_grimoire(grimoire_data):
         "quality_hex": g_qual_hex,
         "type": g_type,
         "type_hex": g_type_hex,
-        "generator": g_generator,
+        "name": g_name,
+        "name_hex": g_name_hex,
+        "unknown_origin": unknown_origin,
         "skills": g_skills
     }
 
@@ -224,7 +273,7 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
         grimoire_str += "".join(grimoire_datum["class_hex"])
         grimoire_str += "".join(grimoire_datum["quality_hex"])
         grimoire_str += "".join(grimoire_datum["type_hex"])
-        grimoire_str += "".join(grimoire_datum["generator"])
+        grimoire_str += "".join(grimoire_datum["name_hex"])
 
         for skill_datum in grimoire_datum["skills"]:
             grimoire_str += skill_datum["_id"]
@@ -232,23 +281,18 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
 
         all_grimoire_str += grimoire_str
 
+    if len(all_grimoire_str) != 99 * 70 * 2:
+        ## 99 grimoires, each is 70 bytes but each byte is 2 characters
+        raise RuntimeError("Error in Grimorie Data; incorrect length.")
+
     REL_GRIM_START = 2 * GRIMOIRE_START
 
     output_hex = file_hex[:REL_GRIM_START] + all_grimoire_str + file_hex[(REL_GRIM_START + len(all_grimoire_str)):]
     assert len(output_hex) == len(file_hex)
-    assert output_hex[:REL_GRIM_START] == file_hex[:REL_GRIM_START]
-    assert all_grimoire_str in output_hex[REL_GRIM_START:(REL_GRIM_START+len(all_grimoire_str)+1)]
-
-    difference_indexes = [i for i in range(len(output_hex)) if output_hex[i] != file_hex[i]]
-    if difference_indexes:
-        print(difference_indexes[0], REL_GRIM_START)
-    print(file_hex[REL_GRIM_START:(REL_GRIM_START+10)])
-    print(output_hex[REL_GRIM_START:(REL_GRIM_START+10)])
-
+    print(len(output_hex), len(file_hex))
 
     with open(output_file, "wb") as out_file:
         out_file.write(bytes.fromhex(output_hex))
-    os.system("chmod --reference=backups/base/mor1rgame.sav {}".format(output_file))
 
 
 """

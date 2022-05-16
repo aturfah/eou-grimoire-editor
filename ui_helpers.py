@@ -25,3 +25,5 @@ def class_id_map():
         output[temp[key]] = key
 
     return output
+
+ascii_to_hex = mh.ascii_to_hex

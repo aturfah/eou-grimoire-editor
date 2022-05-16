@@ -5,7 +5,9 @@ __pycache__/
 ## Testing file stuff
 backups/
 *.json
+*.sav
 
 ## Pyinstaller files
 *.spec
 build/
+*.zip
