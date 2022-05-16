@@ -31,7 +31,7 @@ You can select another grimoire from the menu on the left to edit multiple grimo
 <img src="img/eou_grim_2.PNG" alt="Gathering Grimoire" width="80%"/>
 </div>
 
-After loading the save file back onto my DS, we see the two grimoires in-game below. 
+Once complete, use the `Save File` button to save the file with the modified grimoires. After loading the save file back onto my DS, we see the two grimoires in-game below. 
 
 <div align="center">
 <img src="img/grimoires_ingame.png" alt="in-game" width="80%"/>
