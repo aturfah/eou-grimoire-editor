@@ -2,6 +2,7 @@ from pathlib import Path
 # from pprint import pprint
 from unicode_to_sjis import UNICODE_TO_SJIS
 from sjis_to_unicode import SJIS_TO_UNICODE
+import unicodedata
 
 def load_skill_ids():
     """Map the Little Endian ID Tuple to Skill Name"""
@@ -134,13 +135,14 @@ def map_grimoire_generator(grimoire_data):
 
     ## Entirely 0; unknown origin
     gg_unicode = [x for x in gg_unicode if x != 0]
-
     unknown_origin = False
     if not gg_unicode:
         unknown_origin = True
         gg_unicode = []
 
     gg_unicode = "".join(gg_unicode)
+    ## Names correspond to full-width characters, need half width
+    gg_unicode = unicodedata.normalize("NFKC", gg_unicode)
     # print("\tGG Name:", len(gg_hex), gg_unicode)
 
     return gg_unicode, "".join(gg_hex), unknown_origin
