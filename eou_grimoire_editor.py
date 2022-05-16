@@ -112,7 +112,33 @@ class Root(Tk):
         grimoire_class_var.set(chosen_grimoire["class"])
         grimoire_class_dropdown.grid(row=0, column=1)
 
+        ## Make Creator name dropdown
+        grimoire_generator_frame = self.chosen_grimoire_frame
+        # grimoire_generator_frame.grid(row=1, column=0, columnspan=2)
+        grimoire_generator_label = ttk.Label(
+            grimoire_generator_frame, text="Generator:"
+        )
+        grimoire_generator_label.grid(row=1, column=0)
+
+        self.grimoire_generator_var = StringVar(
+            grimoire_generator_frame)
+        grimoire_generator_entry = ttk.Entry(
+            grimoire_generator_frame,
+            textvariable=self.grimoire_generator_var
+        )
+        self.grimoire_generator_var.set(chosen_grimoire["name"])
+        grimoire_generator_entry.grid(row=1, column=1)
+
+        self.grimoire_unknown_flag = BooleanVar(grimoire_generator_frame)
+        grimoire_unknown_var = ttk.Checkbutton(
+            grimoire_generator_frame,
+            variable=self.grimoire_unknown_flag,
+            onvalue=False, offvalue=True)
+        self.grimoire_unknown_flag.set(chosen_grimoire["unknown_origin"])
+        grimoire_unknown_var.grid(row=1, column=2)
+
         ## Make the skill dropdowns
+        skill_dropdown_offset = 2
         grimoire_skills = sorted([x for x in self.name_id_map.keys()])
         self.skill1_option_var = StringVar(self.chosen_grimoire_frame)
         self.skill2_option_var = StringVar(self.chosen_grimoire_frame)
@@ -157,7 +183,7 @@ class Root(Tk):
             skill_name_label = ttk.Label(
                 self.chosen_grimoire_frame, text="Skill #{}:".format(idx+1)
             )
-            skill_name_label.grid(row=idx+1, column=0)
+            skill_name_label.grid(row=idx+skill_dropdown_offset, column=0)
 
             skill_name_dropdown = AutocompleteEntry(
             # skill_name_dropdown = AutocompleteCombobox(
@@ -170,7 +196,7 @@ class Root(Tk):
                 # skill_update_lambdas[idx])
             skill_name_dropdown.bind("<Return>", skill_update_lambdas[idx])
             option_vars[idx].set(chosen_grimoire["skills"][idx]["name"])
-            skill_name_dropdown.grid(row=idx+1, column=1)
+            skill_name_dropdown.grid(row=idx+skill_dropdown_offset, column=1)
 
             skill_level_var = StringVar(self.chosen_grimoire_frame)
             skill_level_entry = ttk.OptionMenu(
@@ -180,7 +206,7 @@ class Root(Tk):
                 command=level_update_lambdas[idx]
             )
             skill_level_var.set(chosen_grimoire["skills"][idx]["level"])
-            skill_level_entry.grid(row=idx+1, column=2)
+            skill_level_entry.grid(row=idx+skill_dropdown_offset, column=2)
 
     def _update_grim_class(self, new_class):
         self.grimoire_data[self.chosen_idx]["class"] = new_class
