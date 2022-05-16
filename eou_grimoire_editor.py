@@ -91,7 +91,7 @@ class Root(Tk):
         chosen_grimoire = self.grimoire_data[self.chosen_idx]
 
         self.chosen_grimoire_frame = ttk.Frame(self)
-        self.chosen_grimoire_frame.grid(row=2, column=2, rowspan=8)
+        self.chosen_grimoire_frame.grid(row=2, column=2, rowspan=10)
 
         ## Make the Grimoire type dropdown
         grimoire_class_frame = ttk.Frame(self.chosen_grimoire_frame)
@@ -112,13 +112,33 @@ class Root(Tk):
         grimoire_class_var.set(chosen_grimoire["class"])
         grimoire_class_dropdown.grid(row=0, column=1)
 
-        ## Make Creator name dropdown
+        ## Make the grimoire quality dropdown
+        quality_offset = 1
+        grimoire_quality_frame = self.chosen_grimoire_frame
+        grimoire_quality_label = ttk.Label(
+            grimoire_quality_frame, text="Quality:"
+        )
+        grimoire_quality_label.grid(row=quality_offset, column=0)
+
+        grimoire_quality_var = StringVar(grimoire_quality_frame)
+        grimoire_quality_dropdown = ttk.OptionMenu(
+            grimoire_quality_frame,
+            grimoire_quality_var,
+            "",
+            *list(uih.quality_id_map()),
+            command=lambda e: self._update_grimoire_quality(e)
+        )
+        grimoire_quality_var.set(chosen_grimoire["quality"])
+        grimoire_quality_dropdown.grid(row=quality_offset,column=1)
+
+        ## Make Creator name field
+        generator_offset = 2
         grimoire_generator_frame = self.chosen_grimoire_frame
         # grimoire_generator_frame.grid(row=1, column=0, columnspan=2)
         grimoire_generator_label = ttk.Label(
             grimoire_generator_frame, text="Generator:"
         )
-        grimoire_generator_label.grid(row=1, column=0)
+        grimoire_generator_label.grid(row=generator_offset, column=0)
 
         self.grimoire_generator_var = StringVar(
             grimoire_generator_frame)
@@ -128,7 +148,7 @@ class Root(Tk):
         )
         grimoire_generator_entry.bind("<Return>", lambda e: self._update_grim_generator_field())
         self.grimoire_generator_var.set(chosen_grimoire["name"])
-        grimoire_generator_entry.grid(row=1, column=1)
+        grimoire_generator_entry.grid(row=generator_offset, column=1)
 
         self.grimoire_unknown_flag = BooleanVar(grimoire_generator_frame)
         """
@@ -142,7 +162,7 @@ class Root(Tk):
         """
 
         ## Make the skill dropdowns
-        skill_dropdown_offset = 2
+        skill_dropdown_offset = 3
         grimoire_skills = sorted([x for x in self.name_id_map.keys()])
         self.skill1_option_var = StringVar(self.chosen_grimoire_frame)
         self.skill2_option_var = StringVar(self.chosen_grimoire_frame)
@@ -232,6 +252,15 @@ class Root(Tk):
 
         print("Grimoire #{gidx} Generator now {name}; Unknown Origin: {unk}".format(
             gidx=self.chosen_idx+1, name=new_name, unk=self.grimoire_unknown_flag.get()
+        ))
+        self._create_grimoire_dataframe()
+
+    def _update_grimoire_quality(self, new_quality):
+        self.grimoire_data[self.chosen_idx]["quality_hex"][1] = uih.quality_id_map()[new_quality]
+        self.grimoire_data[self.chosen_idx]["quality"] = new_quality
+
+        print("Grimoire #{gidx} Quality now {qual}".format(
+            gidx=self.chosen_idx, qual=new_quality
         ))
         self._create_grimoire_dataframe()
 
