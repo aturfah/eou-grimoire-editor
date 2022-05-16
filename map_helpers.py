@@ -88,17 +88,19 @@ def map_grimoire_class(grimoire_data):
     return grimoire_class, grimoire_class_tuple
 
 
+GRIMOIRE_QUALITY_MAP = {
+    "00": "--",
+    "01": "Flawless",
+    "02": "Slightly Damaged",
+    "03": "Damaged",
+    "04": "Imperfect"
+}
+
+
 def map_grimoire_quality(grimoire_data):
     """Bytes 3/4 are Quality"""
     quality_tuple = tuple(grimoire_data[2:4])
-    quality_map = {
-        "00": "--",
-        "01": "Flawless",
-        "02": "Slightly Damaged",
-        "03": "Damaged",
-        "04": "Imperfect"
-    }
-    grimoire_quality = quality_map[quality_tuple[1]]
+    grimoire_quality = GRIMOIRE_QUALITY_MAP[quality_tuple[1]]
     # print("\tQuality", grimoire_quality)
 
     return grimoire_quality, quality_tuple
