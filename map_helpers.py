@@ -143,7 +143,7 @@ def map_grimoire_generator(grimoire_data):
     gg_unicode = "".join(gg_unicode)
     # print("\tGG Name:", len(gg_hex), gg_unicode)
 
-    return gg_unicode, gg_hex, unknown_origin
+    return gg_unicode, "".join(gg_hex), unknown_origin
 
 
 def map_grimoire_skills(grimoire_data):
