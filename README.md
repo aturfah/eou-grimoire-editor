@@ -50,6 +50,8 @@ Requirements:
 - Python 3
 - Pyinstaller
 
+To run the program locally, please use the instructions to run on a Mac/Linux computer.
+
 To build the `.exe` file locally, install [pyinstaller](https://pyinstaller.org/en/stable/) and run the following command
 ```
 pyinstaller.exe --onefile eou_grimoire_editor.py
