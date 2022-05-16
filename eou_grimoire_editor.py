@@ -126,6 +126,7 @@ class Root(Tk):
             grimoire_generator_frame,
             textvariable=self.grimoire_generator_var
         )
+        grimoire_generator_entry.bind("<Return>", lambda e: self._update_grim_generator())
         self.grimoire_generator_var.set(chosen_grimoire["name"])
         grimoire_generator_entry.grid(row=1, column=1)
 
@@ -207,6 +208,17 @@ class Root(Tk):
             )
             skill_level_var.set(chosen_grimoire["skills"][idx]["level"])
             skill_level_entry.grid(row=idx+skill_dropdown_offset, column=2)
+
+    def _update_grim_generator(self):
+        new_name = self.grimoire_generator_var.get()
+        self.grimoire_data[self.chosen_idx]["name"] = new_name
+        if new_name:
+            self.grimoire_data[self.chosen_idx]["unknown_origin"] = False
+            self.grimoire_unknown_flag.set(False)
+        else:
+            self.grimoire_data[self.chosen_idx]["unknown_origin"] = True
+            self.grimoire_unknown_flag.set(True)
+
 
     def _update_grim_class(self, new_class):
         self.grimoire_data[self.chosen_idx]["class"] = new_class
