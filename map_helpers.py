@@ -16,6 +16,9 @@ def ascii_to_hex(str_in, padded_length=72):
 
     while len(output) < padded_length:
         output += "0"
+    
+    if len(output) > padded_length:
+        raise RuntimeError("Name too Long")
 
     return output
 
@@ -278,19 +281,15 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
 
         all_grimoire_str += grimoire_str
 
+    if len(all_grimoire_str) != 99 * 70 * 2:
+        ## 99 grimoires, each is 70 bytes but each byte is 2 characters
+        raise RuntimeError("Error in Grimorie Data; incorrect length.")
+
     REL_GRIM_START = 2 * GRIMOIRE_START
 
     output_hex = file_hex[:REL_GRIM_START] + all_grimoire_str + file_hex[(REL_GRIM_START + len(all_grimoire_str)):]
     assert len(output_hex) == len(file_hex)
-    assert output_hex[:REL_GRIM_START] == file_hex[:REL_GRIM_START]
-    assert all_grimoire_str in output_hex[REL_GRIM_START:(REL_GRIM_START+len(all_grimoire_str)+1)]
-
-    difference_indexes = [i for i in range(len(output_hex)) if output_hex[i] != file_hex[i]]
-    if difference_indexes:
-        print(difference_indexes[0], REL_GRIM_START)
-    print(file_hex[REL_GRIM_START:(REL_GRIM_START+10)])
-    print(output_hex[REL_GRIM_START:(REL_GRIM_START+10)])
-
+    print(len(output_hex), len(file_hex))
 
     with open(output_file, "wb") as out_file:
         out_file.write(bytes.fromhex(output_hex))
