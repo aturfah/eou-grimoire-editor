@@ -31,7 +31,7 @@ I am going to change Raging Edge to Wolf Pack; once I begin typing Wolf Pack int
 <img src="img/eou_grim_wolf_pack.PNG" alt="Change skill" width="50%"/>
 </div>
 
-You can select another grimoire from the menu on the left to edit multiple grimoires. I've selected the second grimoire and added the three gathering skills at level 5 as well as set the class to a spear; the resulting screen looks as below.
+You can select another grimoire from the menu on the left to edit multiple grimoires. I've selected the second grimoire in my inventory and added the three gathering skills at level 5, as well as set the class to a spear.
 
 <div align="center">
 <img src="img/eou_grim_2.PNG" alt="Gathering Grimoire" width="50%"/>
@@ -43,7 +43,7 @@ After loading the save file back onto my DS, we see the two grimoires in-game be
 <img src="img/grimoires_ingame.png" alt="in-game"/>
 </div>
 
-Finally, as a sanity check the terminal window has a record of the changes made. Note that I forgot to click `Enter` when setting Mine in the second slot so the skill setting occurs after the level setting.
+Finally, as a sanity check the terminal window has a record of the changes made. Note that I forgot to click `Enter` when setting Mine in the second slot so the skill setting occurs after the level setting. The positions in the terminal align with their place on the in-game screen.
 
 <div align="center">
 <img src="img/eou_grim_terminal.PNG" alt="terminal output" width="70%"/>
