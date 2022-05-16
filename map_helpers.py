@@ -99,7 +99,7 @@ GRIMOIRE_QUALITY_MAP = {
 
 def map_grimoire_quality(grimoire_data):
     """Bytes 3/4 are Quality"""
-    quality_tuple = tuple(grimoire_data[2:4])
+    quality_tuple = grimoire_data[2:4]
     grimoire_quality = GRIMOIRE_QUALITY_MAP[quality_tuple[1]]
     # print("\tQuality", grimoire_quality)
 
