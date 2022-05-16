@@ -256,8 +256,8 @@ class Root(Tk):
         self._create_grimoire_dataframe()
 
     def _update_grimoire_quality(self, new_quality):
+        self.grimoire_data[self.chosen_idx]["quality_hex"][1] = uih.quality_id_map()[new_quality]
         self.grimoire_data[self.chosen_idx]["quality"] = new_quality
-        self.grimoire_data[self.chosen_idx]["quality_hex"][1] = uih.quality_id_map[new_quality]
 
         print("Grimoire #{gidx} Quality now {qual}".format(
             gidx=self.chosen_idx, qual=new_quality
