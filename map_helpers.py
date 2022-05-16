@@ -9,8 +9,11 @@ def ascii_to_hex(str_in, padded_length=72):
     output = []
     for char in str_in:
         ## Convert to full width characters
-        output.append(0xFEE0 + ord(char))
-    
+        if char != " ":
+            output.append(0xFEE0 + ord(char))
+        else:
+            output.append(ord(char))
+
     output = "".join([UNICODE_TO_SJIS[x] for x in output])
     output = output.replace(" ", "")
 
@@ -88,17 +91,19 @@ def map_grimoire_class(grimoire_data):
     return grimoire_class, grimoire_class_tuple
 
 
+GRIMOIRE_QUALITY_MAP = {
+    "00": "(Empty)",
+    "01": "Flawless",
+    "02": "Slightly Damaged",
+    "03": "Damaged",
+    "04": "Imperfect"
+}
+
+
 def map_grimoire_quality(grimoire_data):
     """Bytes 3/4 are Quality"""
-    quality_tuple = tuple(grimoire_data[2:4])
-    quality_map = {
-        "00": "--",
-        "01": "Flawless",
-        "02": "Slightly Damaged",
-        "03": "Damaged",
-        "04": "Imperfect"
-    }
-    grimoire_quality = quality_map[quality_tuple[1]]
+    quality_tuple = grimoire_data[2:4]
+    grimoire_quality = GRIMOIRE_QUALITY_MAP[quality_tuple[1]]
     # print("\tQuality", grimoire_quality)
 
     return grimoire_quality, quality_tuple
@@ -143,6 +148,8 @@ def map_grimoire_generator(grimoire_data):
     for h_number in [x.upper() for x in gg_hex]:
         if not cur_char and h_number in SJIS_TO_UNICODE.keys():
             gg_unicode.append(SJIS_TO_UNICODE[h_number])
+            if gg_unicode[-1] != 0:
+                gg_unicode[-1] = chr(gg_unicode[-1])
             continue
 
         cur_char.append(h_number)
