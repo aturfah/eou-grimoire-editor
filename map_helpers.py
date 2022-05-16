@@ -1,6 +1,5 @@
 from pathlib import Path
-import os
-from pprint import pprint
+# from pprint import pprint
 from unicode_to_sjis import UNICODE_TO_SJIS
 from sjis_to_unicode import SJIS_TO_UNICODE
 
@@ -277,7 +276,6 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
 
     with open(output_file, "wb") as out_file:
         out_file.write(bytes.fromhex(output_hex))
-    os.system("chmod --reference=backups/base/mor1rgame.sav {}".format(output_file))
 
 
 """
