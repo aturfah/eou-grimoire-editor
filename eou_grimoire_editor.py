@@ -250,10 +250,12 @@ class Root(Tk):
         self._create_grimoire_dataframe()
 
     def _update_grimoire_skills(self, index, new_name):
-        if new_name == "":
+        if new_name == "" or new_name == "Blank":
             new_name = "Blank"
             self.option_vars[index].set(new_name)
             self._update_grimoire_levels(index, 0)
+        
+        old_name = str(self.grimoire_data[self.chosen_idx]["skills"][index]["name"])
 
         self.grimoire_data[self.chosen_idx]["skills"][index]["name"] = new_name
         self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
@@ -261,7 +263,11 @@ class Root(Tk):
         print("Grimoire #{gidx} Skill #{sidx} Skill now {skl}".format(
             gidx=self.chosen_idx+1, sidx=index+1, skl=new_name
         ))
-        self._create_grimoire_dataframe()
+
+        if old_name == "Blank":
+            self._update_grimoire_levels(index, 1)
+        else:
+            self._create_grimoire_dataframe()
 
 
     def _save_wrapper(self):
