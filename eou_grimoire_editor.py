@@ -131,12 +131,15 @@ class Root(Tk):
         grimoire_generator_entry.grid(row=1, column=1)
 
         self.grimoire_unknown_flag = BooleanVar(grimoire_generator_frame)
+        """
         grimoire_unknown_var = ttk.Checkbutton(
             grimoire_generator_frame,
             variable=self.grimoire_unknown_flag,
-            onvalue=False, offvalue=True)
+            onvalue=False, offvalue=True,
+            text="Known Origin")
         self.grimoire_unknown_flag.set(chosen_grimoire["unknown_origin"])
         grimoire_unknown_var.grid(row=1, column=2)
+        """
 
         ## Make the skill dropdowns
         skill_dropdown_offset = 2
