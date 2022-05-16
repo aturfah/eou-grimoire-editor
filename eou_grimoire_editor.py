@@ -65,7 +65,7 @@ class Root(Tk):
         index = int(w.curselection()[0])
         self.chosen_idx = index
         self._create_grimoire_dataframe()
-        print("Now chosen Grimoire #{}".format(index))
+        print("Now chosen Grimoire #{}".format(index+1))
 
     def _load_wrapper(self):
         filename = filedialog.askopenfilename(filetypes=[("SAV files", ".sav")])
@@ -187,7 +187,7 @@ class Root(Tk):
         self.grimoire_data[self.chosen_idx]["class_hex"][1] = uih.class_id_map()[new_class]
 
         print("Grimoire #{gidx} Class now {cls}".format(
-            gidx=self.chosen_idx, cls=new_class
+            gidx=self.chosen_idx+1, cls=new_class
         ))
 
     def _update_grimoire_levels(self, index, new_level):
@@ -195,7 +195,7 @@ class Root(Tk):
         self.grimoire_data[self.chosen_idx]["skills"][index]["level_hex"] = [format(new_level, 'x').zfill(2), "00"]
 
         print("Grimoire #{gidx} Skill #{sidx} Level now {lvl}".format(
-            gidx=self.chosen_idx, sidx=index, lvl=new_level
+            gidx=self.chosen_idx+1, sidx=index+1, lvl=new_level
         ))
 
     def _update_grimoire_skills(self, index, new_name):
@@ -203,7 +203,7 @@ class Root(Tk):
         self.grimoire_data[self.chosen_idx]["skills"][index]["_id"] = self.name_id_map[new_name]
 
         print("Grimoire #{gidx} Skill #{sidx} Skill now {skl}".format(
-            gidx=self.chosen_idx, sidx=index, skl=new_name
+            gidx=self.chosen_idx+1, sidx=index+1, skl=new_name
         ))
 
 
