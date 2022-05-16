@@ -124,10 +124,11 @@ class Root(Tk):
         grimoire_quality_dropdown = ttk.OptionMenu(
             grimoire_quality_frame,
             grimoire_quality_var,
-            *[x for x in range(5)],
+            "",
+            *list(uih.quality_id_map()),
             command=lambda e: print(e)
         )
-        grimoire_quality_var.set("1")
+        grimoire_quality_var.set(chosen_grimoire["quality"])
         grimoire_quality_dropdown.grid(row=quality_offset,column=1)
 
         ## Make Creator name field
