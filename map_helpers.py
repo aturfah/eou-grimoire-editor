@@ -131,7 +131,6 @@ def map_grimoire_generator(grimoire_data):
             char_hex = "".join(cur_char)
             char_unic = SJIS_TO_UNICODE[char_hex]
             gg_unicode.append(chr(char_unic))
-            print(char_hex, gg_unicode[-1])
             cur_char = []
 
     ## Entirely 0; unknown origin
@@ -143,7 +142,7 @@ def map_grimoire_generator(grimoire_data):
         gg_unicode = []
 
     gg_unicode = "".join(gg_unicode)
-    print("\tGG Name:", len(gg_hex), gg_unicode)
+    # print("\tGG Name:", len(gg_hex), gg_unicode)
 
     return gg_unicode, gg_hex, unknown_origin
 
@@ -250,7 +249,7 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
     all_grimoire_str = ""
     for grimoire_datum in grimoire_list:
         grimoire_str = ""
-        pprint(grimoire_datum)
+        # pprint(grimoire_datum)
         grimoire_str += "".join(grimoire_datum["class_hex"])
         grimoire_str += "".join(grimoire_datum["quality_hex"])
         grimoire_str += "".join(grimoire_datum["type_hex"])
