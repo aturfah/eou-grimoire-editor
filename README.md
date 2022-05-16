@@ -6,24 +6,33 @@ Obtain a backup of a save file for the game using `Checkpoint` or a similar tool
 
 Launch the grimoire editor program and load the save file. You should see a screen similar to the one below.
 
+<div align="center">
 <img src="img/eou_grim_on_load.PNG" alt="Screen on load" width="50%"/>
+</div>
 
 I am going to change Raging Edge to Wolf Pack; once I begin typing Wolf Pack into the field it should auto-complete. Click `Enter` or `Return` and it should register the new skill. In addition, you can click `Up` or `Down` to cycle through the auto-complete options. If you want a level 10 Wolf Pack, you can use the dropdown to the side of the skill name and select the desired level.
 
+<div align="center">
 <img src="img/eou_grim_wolf_pack.PNG" alt="Change skill" width="50%"/>
+</div>
 
 You can select another grimoire from the menu on the left to edit multiple grimoires. I've selected the second grimoire and added the three gathering skills at level 5 as well as set the class to a spear; the resulting screen looks as below.
 
+<div align="center">
 <img src="img/eou_grim_2.PNG" alt="Gathering Grimoire" width="50%"/>
+</div>
 
 After loading the save file back onto my DS, we see the two grimoires in-game below.
 
+<div align="center">
 <img src="img/grimoires_ingame.png" alt="in-game"/>
+</div>
 
 Finally, as a sanity check the terminal window has a record of the changes made. Note that I forgot to click `Enter` when setting Mine in the second slot so the skill setting occurs after the level setting.
 
-<img src="img/eou_grim_terminal.PNG" alt="terminal output" width="50%"/>
-
+<div align="center">
+<img src="img/eou_grim_terminal.PNG" alt="terminal output" width="70%"/>
+</div>
 
 ## Running
 ### Windows
