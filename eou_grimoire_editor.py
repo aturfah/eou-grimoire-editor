@@ -76,8 +76,8 @@ class Root(Tk):
             self.grimoire_data, self.file_hex = uih.load_wrapper(filename)
             self.file_loaded = True
             self.loaded_text.set("File Loaded")
-        except Exception:
-            self._error_message("Error Loading", "Please verify you're loading the mor1rgame.sav file")
+        except Exception as exc:
+            self._error_message("Error Loading", "Error: {}".format(exc))
             return
         
         ## Get everything functional
