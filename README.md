@@ -14,6 +14,10 @@ Download the code from this repository navigate to the directory and using the t
 python eou_grimoire_editor.py
 ```
 
+You may need to install tkinter for Python3; this can be done on Ubuntu systems with the following command
+```
+sudo apt-get install python3-tk
+```
 
 ## How to Use (with pictures!)
 
