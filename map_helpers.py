@@ -89,7 +89,7 @@ def map_grimoire_class(grimoire_data):
 
 
 GRIMOIRE_QUALITY_MAP = {
-    "00": "--",
+    "00": "(Empty)",
     "01": "Flawless",
     "02": "Slightly Damaged",
     "03": "Damaged",
