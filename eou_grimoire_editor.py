@@ -126,7 +126,7 @@ class Root(Tk):
             grimoire_generator_frame,
             textvariable=self.grimoire_generator_var
         )
-        grimoire_generator_entry.bind("<Return>", lambda e: self._update_grim_generator())
+        grimoire_generator_entry.bind("<Return>", lambda e: self._update_grim_generator_field())
         self.grimoire_generator_var.set(chosen_grimoire["name"])
         grimoire_generator_entry.grid(row=1, column=1)
 
@@ -209,15 +209,22 @@ class Root(Tk):
             skill_level_var.set(chosen_grimoire["skills"][idx]["level"])
             skill_level_entry.grid(row=idx+skill_dropdown_offset, column=2)
 
-    def _update_grim_generator(self):
+    def _update_grim_generator_field(self):
         new_name = self.grimoire_generator_var.get()
         self.grimoire_data[self.chosen_idx]["name"] = new_name
+        self.grimoire_data[self.chosen_idx]["name_hex"] = uih.ascii_to_hex(new_name)
         if new_name:
             self.grimoire_data[self.chosen_idx]["unknown_origin"] = False
+            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "00"
             self.grimoire_unknown_flag.set(False)
         else:
             self.grimoire_data[self.chosen_idx]["unknown_origin"] = True
+            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "30"
             self.grimoire_unknown_flag.set(True)
+
+        print("Grimoire #{gidx} Generator now {name}; Unknown Origin: {unk}".format(
+            gidx=self.chosen_idx+1, name=new_name, unk=self.grimoire_unknown_flag.get()
+        ))
 
 
     def _update_grim_class(self, new_class):
