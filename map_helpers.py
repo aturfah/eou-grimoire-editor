@@ -4,6 +4,22 @@ from unicode_to_sjis import UNICODE_TO_SJIS
 from sjis_to_unicode import SJIS_TO_UNICODE
 import unicodedata
 
+
+def ascii_to_hex(str_in, padded_length=72):
+    output = []
+    for char in str_in:
+        ## Convert to full width characters
+        output.append(0xFEE0 + ord(char))
+    
+    output = "".join([UNICODE_TO_SJIS[x] for x in output])
+    output = output.replace(" ", "")
+
+    while len(output) < padded_length:
+        output += "0"
+
+    return output
+
+
 def load_skill_ids():
     """Map the Little Endian ID Tuple to Skill Name"""
     output = {}
