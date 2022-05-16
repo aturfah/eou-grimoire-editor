@@ -1,5 +1,20 @@
 # Etrian Odyssey Untold Grimoire Editor
 
+## Running
+### Windows
+Run the `eou_grimoire_editor.exe` file from the `dist/` folder. Make sure that the `skill_data/` folder is in the same directory as the executable file, otherwise it will not run.
+
+### Mac/Linux
+Requirements:
+- Python 3 (with tkinter)
+- Basic command line usage
+
+Download the code from this repository navigate to the directory and using the terminal. From there, run the command below
+```
+python eou_grimoire_editor.py
+```
+
+
 ## How to Use
 
 Obtain a backup of a save file for the game using `Checkpoint` or a similar tool for the 3DS. The file of interest should be called `mor1rgame.sav`. I strongly suggest backing up this save file in case things go wrong.
@@ -33,20 +48,6 @@ Finally, as a sanity check the terminal window has a record of the changes made.
 <div align="center">
 <img src="img/eou_grim_terminal.PNG" alt="terminal output" width="70%"/>
 </div>
-
-## Running
-### Windows
-Run the `eou_grimoire_editor.exe` file from the `dist/` folder. Make sure that the `skill_data/` folder is in the same directory as the executable file, otherwise it will not run.
-
-### Mac/Linux
-Requirements:
-- Python 3 (with tkinter)
-- Basic command line usage
-
-Download the code from this repository and using the terminal navigate to the directory. From there, run the command below
-```
-python eou_grimoire_editor.py
-```
 
 
 ## Build/Debug
