@@ -22,25 +22,25 @@ Obtain a backup of a save file for the game using `Checkpoint` or a similar tool
 Launch the grimoire editor program and load the save file. You should see a screen similar to the one below on the left. I am going to change Raging Edge to Wolf Pack; once I begin typing Wolf Pack into the field it should auto-complete. Click `Enter` or `Return` and it should register the new skill. In addition, you can click `Up` or `Down` to cycle through the auto-complete options. If you want a level 10 Wolf Pack, you can use the dropdown to the side of the skill name and select the desired level, as I have done in the image on the right.
 
 <div align="center">
-<img src="img/eou_grim_1.PNG" alt="Change skill" width="50%"/>
+<img src="img/eou_grim_1.PNG" alt="Change skill" width="80%"/>
 </div>
 
 You can select another grimoire from the menu on the left to edit multiple grimoires. I've selected the second grimoire in my inventory (the original can be seen on the left) to modify. I added the three gathering skills at level 5 as well as set the class to a spear, as shown on the right.
 
 <div align="center">
-<img src="img/eou_grim_2.PNG" alt="Gathering Grimoire" width="70%"/>
+<img src="img/eou_grim_2.PNG" alt="Gathering Grimoire" width="80%"/>
 </div>
 
 After loading the save file back onto my DS, we see the two grimoires in-game below. 
 
 <div align="center">
-<img src="img/grimoires_ingame.png" alt="in-game"/>
+<img src="img/grimoires_ingame.png" alt="in-game" width="80%"/>
 </div>
 
 Finally, as a sanity check the terminal window has a record of the changes made. Note that I forgot to click `Enter` when setting Mine in the second slot so the skill setting occurs after the level setting. The positions in the terminal align with their place on the in-game screen. This can be a good tool to verify when making edits to ensure that the changes register.
 
 <div align="center">
-<img src="img/eou_grim_terminal.PNG" alt="terminal output" width="70%"/>
+<img src="img/eou_grim_terminal.PNG" alt="terminal output" width="80%"/>
 </div>
 
 
