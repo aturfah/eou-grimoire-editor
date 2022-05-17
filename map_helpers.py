@@ -137,7 +137,7 @@ def map_grimoire_type(grimoire_data):
         grim_type = type_map[grimoire_type_tuple[0]]
     except Exception as exc:
         grim_type = "???"
-        raise RuntimeError("Did not expect to see Grimoire type bytes: {}".format(grimoire_type_tuple))
+        # raise RuntimeError("Did not expect to see Grimoire type bytes: {}".format(grimoire_type_tuple))
 
     # print("\tType:", grim_type)
     return grim_type, grimoire_type_tuple
