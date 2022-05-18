@@ -25,7 +25,7 @@ def ascii_to_hex(str_in, padded_length=72):
 
     while len(output) < padded_length:
         output += "0"
-    
+
     if len(output) > padded_length:
         raise RuntimeError("Name too Long")
 
