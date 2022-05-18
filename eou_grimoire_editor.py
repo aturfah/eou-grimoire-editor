@@ -237,8 +237,8 @@ class Root(Tk):
         try:
             self.grimoire_data[self.chosen_idx]["name_hex"] = uih.ascii_to_hex(new_name)
             self.grimoire_data[self.chosen_idx]["name"] = new_name
-        except Exception:
-            self._error_message("Error", "Name too long. Try a shorter one.")
+        except Exception as exc:
+            self._error_message("Error", exc)
             return
         
         if new_name:
