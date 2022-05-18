@@ -12,7 +12,7 @@ def ascii_to_hex(str_in, padded_length=72):
         if char != " ":
             output.append(0xFEE0 + ord(char))
         else:
-            output.append(ord(char))
+            output.append(0x3000) ## Full Width Space?
 
     output = "".join([UNICODE_TO_SJIS[x] for x in output])
     output = output.replace(" ", "")
