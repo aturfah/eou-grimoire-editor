@@ -25,7 +25,7 @@ Obtain a backup of a save file for the game using `Checkpoint` or a similar tool
 
 Launch the grimoire editor program and load the save file. You should see a screen similar to the one below on the left. I am going to change Raging Edge to Wolf Pack; once I begin typing Wolf Pack into the field it should auto-complete. Click `Enter` or `Return` and it should register the new skill. In addition, you can click `Up` or `Down` to cycle through the auto-complete options. If you want a level 10 Wolf Pack, you can use the dropdown to the side of the skill name and select the desired level, as I have done in the image on the right.
 
-We can also edit the name of the character who generated the grimoire. A blank entry is Unknown origin; in this case I'm going to set the generator to be "Doot." Remember to hit `Enter` to register the changes. I'm also going to make the grimoire slightly damaged, even though it has a level 10 skill.
+We can also edit the name of the character who generated the grimoire. A blank entry is Unknown origin; in this case I'm going to set the generator to be "Doot Do0t" as dummy text. Remember to hit `Enter` to register the changes. I'm also going to make the grimoire slightly damaged, even though it has a level 10 skill.
 
 <div align="center">
 <img src="img/eou_grim_1.jpg" alt="Change skill" width="80%"/>
@@ -37,10 +37,10 @@ You can select another grimoire from the menu on the left to edit multiple grimo
 <img src="img/eou_grim_2.jpg" alt="Gathering Grimoire" width="80%"/>
 </div>
 
-Once complete, use the `Save File` button to save the file with the modified grimoires. After loading the save file back onto my DS, we see the two grimoires in-game below. 
+Once complete, use the `Save File` button to save the file with the modified grimoires. After loading the save file, we see the two grimoires in-game below. 
 
 <div align="center">
-<img src="img/grimoires_ingame.png" alt="in-game" width="80%"/>
+<img src="img/grimoires_ingame.jpg" alt="in-game" width="80%"/>
 </div>
 
 Finally, as a sanity check the terminal window has a record of the changes made. Note that I forgot to click `Enter` when setting Mine in the second slot so the skill setting occurs after the level setting. The positions in the terminal align with their place on the in-game screen. This can be a good tool to verify when making edits to ensure that the changes register.
