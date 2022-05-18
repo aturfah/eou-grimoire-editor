@@ -6,15 +6,21 @@ import unicodedata
 
 
 def ascii_to_hex(str_in, padded_length=72):
-    output = []
+    output_arr = []
     for char in str_in:
         ## Convert to full width characters
         if char != " " and ord(char) != 8140:
-            output.append(0xFEE0 + ord(char))
+            output_arr.append(0xFEE0 + ord(char))
         else:
-            output.append(0x3000) ## Full Width Space?
+            output_arr.append(0x3000) ## Full Width Space?
 
-    output = "".join([UNICODE_TO_SJIS[x] for x in output])
+    output = ""
+    for idx in range(len(output_arr)):
+        try: 
+            output += UNICODE_TO_SJIS[output_arr[idx]]
+        except Exception:
+            raise RuntimeError("Invalid character in name: '{}'".format(str_in[idx]))
+
     output = output.replace(" ", "")
 
     while len(output) < padded_length:
