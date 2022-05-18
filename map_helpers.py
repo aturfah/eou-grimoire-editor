@@ -9,7 +9,7 @@ def ascii_to_hex(str_in, padded_length=72):
     output = []
     for char in str_in:
         ## Convert to full width characters
-        if char != " " or ord(char) != 8140:
+        if char != " " and ord(char) != 8140:
             output.append(0xFEE0 + ord(char))
         else:
             output.append(0x3000) ## Full Width Space?
