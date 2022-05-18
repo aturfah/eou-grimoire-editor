@@ -260,7 +260,7 @@ class Root(Tk):
         self.grimoire_data[self.chosen_idx]["quality"] = new_quality
 
         print("Grimoire #{gidx} Quality now {qual}".format(
-            gidx=self.chosen_idx, qual=new_quality
+            gidx=self.chosen_idx+1, qual=new_quality
         ))
         self._create_grimoire_dataframe()
 
