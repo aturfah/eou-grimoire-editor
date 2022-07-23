@@ -67,13 +67,15 @@ def update_chosen_grimoire(new_idx):
 
 
 @eel.expose
-def update_grimoire_skill(skill_name):
-    SFM.set_grimoire_skill(skill_name)
+def update_grimoire_skill(idx, skill_name):
+    print(idx, skill_name)
+    SFM.set_grimoire_skill(idx, skill_name)
 
 
 @eel.expose
-def update_grimoire_skill_level(new_level):
-    SFM.set_grimoire_skill_level(new_level)
+def update_grimoire_skill_level(idx, new_level):
+    print(idx, new_level)
+    SFM.set_grimoire_skill_level(idx, new_level)
 
 
 @eel.expose
