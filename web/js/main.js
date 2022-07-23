@@ -78,12 +78,25 @@ function updateGrimoireGeneratorReadOnly(grimOriginUnk) {
   }
 }
 
+function updateGrimoireFieldsInactive(grimActive) {
+  document.getElementById("grim-class").disabled = !grimActive;
+  document.getElementById("grim-quality").disabled = !grimActive;
+  document.getElementById("grim-generator").disabled = !grimActive;
+  document.getElementById("grim-unk-origin").disabled = !grimActive;
+
+  for (let idx=0; idx < 7; idx++) {
+    document.getElementById("skill-name"+idx).disabled = !grimActive;
+    document.getElementById("skill-level"+idx).disabled = !grimActive;
+  }
+}
+
 // Render the chosen Grimoire
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
 
   const grimoireActive = document.getElementById("grim-active");
   grimoireActive.checked = grimoireDatum.valid;
+  updateGrimoireFieldsInactive(grimoireDatum.valid);
 
   const grimoireClass = document.getElementById("grim-class");
   grimoireClass.value = grimoireDatum.class;
@@ -124,15 +137,7 @@ async function grimoireActiveCallback() {
   await eel.update_grimoire_active(grimActive)();
 
   // Set everything to be read-only
-  document.getElementById("grim-class").disabled = !grimActive;
-  document.getElementById("grim-quality").disabled = !grimActive;
-  document.getElementById("grim-generator").disabled = !grimActive;
-  document.getElementById("grim-unk-origin").disabled = !grimActive;
-
-  for (let idx=0; idx < 7; idx++) {
-    document.getElementById("skill-name"+idx).disabled = !grimActive;
-    document.getElementById("skill-level"+idx).disabled = !grimActive;
-  }
+  updateGrimoireFieldsInactive(grimActive);
 
   // Update the panel
   setGrimoireDropdown();
