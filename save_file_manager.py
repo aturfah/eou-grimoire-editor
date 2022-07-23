@@ -172,3 +172,6 @@ class SaveFileManager:
 
     def set_grimoire_active(self, new_value):
         self.grimoire_data[self.chosen_idx]["valid"] = new_value
+
+    def reset_chosen_grimoire(self):
+        self.grimoire_data[self.chosen_idx] = deepcopy(self.orig_grimoire_data[self.chosen_idx])
