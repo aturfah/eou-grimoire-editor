@@ -1,5 +1,6 @@
 import eel
 from save_file_manager import SaveFileManager
+import ui_helpers as uih
 
 @eel.expose
 def get_random_number():
@@ -41,18 +42,10 @@ def get_grimoire_dropdown_options():
 
 @eel.expose
 def get_skill_names():
-    skill_names = list(ph.NAME_TO_HEX.keys())
+    skill_names = list(uih.name_id_map().keys())
     skill_names.sort()
 
     return skill_names
-
-
-@eel.expose
-def get_bonus_types():
-    bonus_names = list(ph.GRIMOIRE_BONUS_TYPE_MAP.values())
-    bonus_names.sort()
-
-    return bonus_names
 
 
 @eel.expose
@@ -63,7 +56,6 @@ def get_chosen_grimoire():
 @eel.expose
 def get_chosen_grimoire_idx():
     return SFM.chosen_idx
-
 
 
 @eel.expose
@@ -85,18 +77,9 @@ def update_grimoire_skill_level(new_level):
 
 
 @eel.expose
-def update_grimoire_bonus_type(new_bonus):
-    SFM.set_grimoire_bonus_type(new_bonus)
-
-
-@eel.expose
-def update_grimoire_bonus_level(new_bonus):
-    SFM.set_grimoire_bonus_level(new_bonus)
-
-
-@eel.expose
 def reset_grimoire():
     SFM.reset_chosen_grimoire()
+
 
 if __name__ == "__main__":
     SFM = SaveFileManager()
