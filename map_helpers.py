@@ -1,5 +1,5 @@
 from pathlib import Path
-# from pprint import pprint
+from pprint import pprint
 from unicode_to_sjis import UNICODE_TO_SJIS
 from sjis_to_unicode import SJIS_TO_UNICODE
 import unicodedata
@@ -290,8 +290,11 @@ def parse_save_file(fname):
 def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
     all_grimoire_str = ""
     for grimoire_datum in grimoire_list:
+        if grimoire_datum["valid"] == False:
+            all_grimoire_str += "0" * 70 * 2
+            continue
+
         grimoire_str = ""
-        # pprint(grimoire_datum)
         grimoire_str += "".join(grimoire_datum["class_hex"])
         grimoire_str += "".join(grimoire_datum["quality_hex"])
         grimoire_str += "".join(grimoire_datum["type_hex"])
@@ -315,6 +318,8 @@ def write_save_file(file_hex, grimoire_list, output_file="mor1rgame.sav"):
 
     with open(output_file, "wb") as out_file:
         out_file.write(bytes.fromhex(output_hex))
+
+    return output_file
 
 
 """

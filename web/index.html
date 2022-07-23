@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EOU Grimoire Editor</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/eel.js"></script> 
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <h2 class="title">Etrian Odyssey Untold - Grimoire Editor</h2>
+    
+                <!--Load buttons-->
+                <div class="button-div text-center">
+                    <button class="btn btn-primary" id="load-button" type="submit">Load File</button>
+                    <button class="btn btn-primary" id="save-button" disabled="disabled" type="submit">Save File</button>
+                    <button class="btn btn-warning" id="reset-button" disabled="disabled" type="submit">Reset Grimoire</button>
+                </div>
+
+                <!--Grimoire Choice Dropdown-->
+                <div class="text-center">
+                    Chosen Grimoire: <select class="grimoire-dropdown" id="grimoire-dropdown" onchange="grimoireSelectCallback()"></select>
+                </div>
+
+                <!--Chosen Grimoire Data-->
+                <div class="chosen-grimoire">
+                    <table class="grimoire-table">
+                        <tr>
+                            <td colspan="2">
+                                <p>Active Grimoire:
+                                    <input id="grim-active" type="checkbox" onchange="grimoireActiveCallback()" />
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Grimoire Class:
+                                    <select id="grim-class" onchange="grimoreClassCallback()"></select>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Grimoire Quality:
+                                    <select id="grim-quality" onchange="grimoreQualityCallback()"></select>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Grimoire Generator:
+                                    <input id="grim-generator" type="text" oninput="grimoireGeneratorCallback()" />
+                                </p>
+                                <p>Unknown Origin: 
+                                    <input id="grim-unk-origin" type="checkbox" onchange="grimoireUnknownOriginCallback()" />
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name0" onchange="skillSelectCallback(0)"></select></p>
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level0" onchange="skillLevelCallback(0)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name1" onchange="skillSelectCallback(1)"></select></p>
+                                
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level1" onchange="skillLevelCallback(1)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name2" onchange="skillSelectCallback(2)"></select></p>
+                                
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level2" onchange="skillLevelCallback(2)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name3" onchange="skillSelectCallback(3)"></select></p>
+                                
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level3" onchange="skillLevelCallback(3)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name4" onchange="skillSelectCallback(4)"></select></p>
+                                
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level4" onchange="skillLevelCallback(4)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name5" onchange="skillSelectCallback(5)"></select></p>
+                                
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level5" onchange="skillLevelCallback(5)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Skill Name: <select id="skill-name6" onchange="skillSelectCallback(6)"></select></p>
+                                
+                            </td>
+                            <td>
+                                <p>Skill Level: <select id="skill-level6" onchange="skillLevelCallback(6)">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+<script src="js/main.js"></script>
+</html>

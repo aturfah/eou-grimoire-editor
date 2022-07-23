@@ -1,0 +1,31 @@
+h2.title {
+  text-align: center;
+}
+
+div.button-div {
+  margin: auto;
+  width: 60%;
+  /* border: 3px solid green; */
+  padding: 10px;
+}
+
+.grimoire-dropdown {
+  font-family: monospace;
+}
+
+.chosen-grimoire {
+  padding: 5px;
+}
+
+.chosen-grimoire table.grimoire-table td {
+  padding: 5px;
+}
+
+table.grimoire-table {
+  margin: auto;
+}
+
+.greyed-out {
+  background-color: lightgray;
+  color: gray;
+}
