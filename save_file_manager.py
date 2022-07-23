@@ -93,3 +93,7 @@ class SaveFileManager:
 
         if skill_level == 0 and skill_name != "Blank":
             self.set_grimoire_skill_name(idx, "Blank")
+
+    def set_grimoire_class(self, new_class):
+        self.grimoire_data[self.chosen_idx]["class"] = new_class
+        self.grimoire_data[self.chosen_idx]["class_hex"][1] = uih.class_id_map()[new_class]

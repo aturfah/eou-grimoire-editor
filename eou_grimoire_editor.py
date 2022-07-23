@@ -77,6 +77,11 @@ def update_grimoire_skill_level(idx, new_level):
 
 
 @eel.expose
+def update_grimoire_class(new_class):
+    SFM.set_grimoire_class(new_class)
+
+
+@eel.expose
 def reset_grimoire():
     SFM.reset_chosen_grimoire()
 
