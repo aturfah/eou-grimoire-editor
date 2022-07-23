@@ -96,6 +96,11 @@ def update_grimoire_quality(new_quality):
 
 
 @eel.expose
+def update_grimoire_generator(new_name):
+    SFM.set_grimoire_generator(new_name)
+
+
+@eel.expose
 def reset_grimoire():
     SFM.reset_chosen_grimoire()
 

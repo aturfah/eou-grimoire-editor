@@ -101,3 +101,17 @@ class SaveFileManager:
     def set_grimoire_quality(self, new_quality):
         self.grimoire_data[self.chosen_idx]["quality"] = new_quality
         self.grimoire_data[self.chosen_idx]["quality_hex"][1] = uih.quality_id_map()[new_quality]
+
+    def set_grimoire_generator(self, new_name):
+        try:
+            self.grimoire_data[self.chosen_idx]["name_hex"] = uih.ascii_to_hex(new_name)
+            self.grimoire_data[self.chosen_idx]["name"] = new_name
+        except Exception as exc:
+            raise exc
+
+        if new_name:
+            self.grimoire_data[self.chosen_idx]["unknown_origin"] = False
+            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "00"
+        else:
+            self.grimoire_data[self.chosen_idx]["unknown_origin"] = True
+            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "30"
