@@ -157,6 +157,7 @@ async function grimoireGeneratorCallback() {
   const newGenerator = document.getElementById("grim-generator").value;
   await eel.update_grimoire_generator(newGenerator);
 
+  setGrimoireDropdown();
   renderChosenGrimoire();
 }
 
@@ -167,6 +168,8 @@ async function grimoireUnknownOriginCallback() {
   updateGrimoireGeneratorReadOnly(grimOriginUnk)
 
   await eel.update_grimoire_unknown_origin(grimOriginUnk);
+
+  setGrimoireDropdown();
   renderChosenGrimoire();
 }
 
