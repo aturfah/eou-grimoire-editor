@@ -26,6 +26,20 @@ async function setGrimoireDropdown() {
   grimoireDropdown.value = await eel.get_chosen_grimoire_idx()();
 }
 
+async function setGrimoireClassDropdown() {
+  let grimClasses = await eel.get_grimoire_class_options()()
+
+  const classDropdown = document.getElementById("grim-class")
+
+  grimClasses.forEach(name => {
+    let opt = document.createElement("option")
+    opt.value = name
+    opt.innerHTML = name
+    classDropdown.appendChild(opt)
+  })
+}
+
+
 // Set the elements in the skill selection dropdown
 async function setSkillNameDropdown() {
   let skillList = await eel.get_skill_names()()
@@ -40,23 +54,12 @@ async function setSkillNameDropdown() {
   });
 }
 
-// Set the elements in the grimoire bonus dropdown
-async function setGrimoireBonusDropdown() {
-  let bonusList = await eel.get_bonus_types()()
-
-  bonusList.forEach(val => {
-    const opt = document.createElement("option");
-    opt.value = val;
-    opt.innerHTML = val;
-    document.getElementById("bonus-type").appendChild(opt);
-  });
-}
-
 // Render the chosen Grimoire
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
 
-  console.log(grimoireDatum);
+  const grimoireClass = document.getElementById("grim-class");
+  grimoireClass.value = grimoireDatum.class;
 
   grimoireDatum["skills"].forEach((val, idx) => {
     // Set the skill name
@@ -111,7 +114,7 @@ async function loadMethod() {
   // Get everything prepared
   setGrimoireDropdown();
   setSkillNameDropdown();
-  setGrimoireBonusDropdown();
+  setGrimoireClassDropdown();
   renderChosenGrimoire();
 
   // Reset/Save buttons are allowed
