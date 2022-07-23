@@ -69,7 +69,7 @@ class SaveFileManager:
                     gen_name = "(Unknown Origin)"
 
                 grim_names.append(name_str.format(
-                    ctr=counter,
+                    ctr=str(counter).zfill(2),
                     gen=gen_name,
                     qlty=gdatum["quality"],
                     cls=grim_class.strip(),
