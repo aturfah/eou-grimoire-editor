@@ -169,3 +169,6 @@ class SaveFileManager:
 
     def set_grimoire_unkown_origin(self, new_value):
         self.grimoire_data[self.chosen_idx]["unknown_origin"] = new_value
+
+    def set_grimoire_active(self, new_value):
+        self.grimoire_data[self.chosen_idx]["valid"] = new_value

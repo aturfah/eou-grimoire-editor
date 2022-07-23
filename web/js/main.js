@@ -82,8 +82,6 @@ function updateGrimoireGeneratorReadOnly(grimOriginUnk) {
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
 
-  console.log(grimoireDatum)
-
   const grimoireActive = document.getElementById("grim-active");
   grimoireActive.checked = grimoireDatum.valid;
 
@@ -123,7 +121,11 @@ async function grimoireSelectCallback() {
 // When the grimoire active button is changed, update python class
 async function grimoireActiveCallback() {
   const grimActive = document.getElementById("grim-active");
-  console.log(grimActive.checked);
+  await eel.update_grimoire_active(grimActive.checked)();
+
+  // Update the panel
+  setGrimoireDropdown();
+  renderChosenGrimoire();
 }
 
 // When the skill select dropdown is changed, update the python class
