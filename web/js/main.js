@@ -82,6 +82,11 @@ function updateGrimoireGeneratorReadOnly(grimOriginUnk) {
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
 
+  console.log(grimoireDatum)
+
+  const grimoireActive = document.getElementById("grim-active");
+  grimoireActive.checked = grimoireDatum.valid;
+
   const grimoireClass = document.getElementById("grim-class");
   grimoireClass.value = grimoireDatum.class;
 
@@ -115,6 +120,11 @@ async function grimoireSelectCallback() {
   renderChosenGrimoire();
 }
 
+// When the grimoire active button is changed, update python class
+async function grimoireActiveCallback() {
+  const grimActive = document.getElementById("grim-active");
+  console.log(grimActive.checked);
+}
 
 // When the skill select dropdown is changed, update the python class
 async function skillSelectCallback(idx) {
