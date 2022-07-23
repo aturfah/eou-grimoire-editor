@@ -31,10 +31,12 @@ async function setSkillNameDropdown() {
   let skillList = await eel.get_skill_names()()
 
   skillList.forEach(val => {
-    const opt = document.createElement("option");
-    opt.value = val;
-    opt.innerHTML = val;
-    document.getElementById("skill-name").appendChild(opt);
+    for (let idx=0; idx < 7; idx++) {
+      const opt = document.createElement("option");
+      opt.value = val;
+      opt.innerHTML = val;  
+      document.getElementById("skill-name"+idx).appendChild(opt);
+    }
   });
 }
 
@@ -54,21 +56,17 @@ async function setGrimoireBonusDropdown() {
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
 
-  // Set the skill name
-  let skillNameSelect = document.getElementById("skill-name");
-  skillNameSelect.value = grimoireDatum["skill_name"];
+  console.log(grimoireDatum);
 
-  // Set the grimire level
-  let skillLevelSelect = document.getElementById("skill-level")
-  skillLevelSelect.value = String(grimoireDatum["skill_level"]);
-  
-  // Set the bonus type
-  let bonusTypeSelect = document.getElementById("bonus-type");
-  bonusTypeSelect.value = grimoireDatum["bonus_type"];
+  grimoireDatum["skills"].forEach((val, idx) => {
+    // Set the skill name
+    let skillNameSelect = document.getElementById("skill-name"+idx);
+    skillNameSelect.value = val["name"];
 
-  // Set the bonus type level
-  let bonusLevelSelect = document.getElementById("bonus-level")
-  bonusLevelSelect.value = String(grimoireDatum["bonus_level"]);
+    // Set the grimire level
+    let skillLevelSelect = document.getElementById("skill-level"+idx)
+    skillLevelSelect.value = String(val["level"]);
+  })
 }
 
 // When the grimoire dropdown is changed, update the python class
@@ -100,26 +98,6 @@ async function skillLevelCallback() {
   setGrimoireDropdown();
   renderChosenGrimoire();
 }
-
-async function bonusTypeCallback() {
-  const newBonus = document.getElementById("bonus-type").value;
-  await eel.update_grimoire_bonus_type(newBonus);
-
-  // Update the panel
-  setGrimoireDropdown();
-  renderChosenGrimoire();
-}
-
-
-async function bonusLevelCallback() {
-  const newLevel = document.getElementById("bonus-level").value;
-  await eel.update_grimoire_bonus_level(newLevel);
-
-  // Update the panel
-  setGrimoireDropdown();
-  renderChosenGrimoire();
-}
-
 
 // Load the file from disk and prepare UI
 async function loadMethod() {
