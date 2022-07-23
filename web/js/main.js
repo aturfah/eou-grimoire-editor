@@ -130,6 +130,18 @@ async function grimoreClassCallback() {
   renderChosenGrimoire();
 }
 
+// When the grimoire quality is changed, update the python class
+async function grimoreQualityCallback() {
+  const newQual = document.getElementById("grim-quality").value;
+  await eel.update_grimoire_quality(newQual);
+
+  // Update the panel
+  setGrimoireDropdown();
+  renderChosenGrimoire();
+}
+
+
+
 // Load the file from disk and prepare UI
 async function loadMethod() {
   const success = await eel.load_file()();

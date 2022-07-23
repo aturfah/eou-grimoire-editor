@@ -97,3 +97,7 @@ class SaveFileManager:
     def set_grimoire_class(self, new_class):
         self.grimoire_data[self.chosen_idx]["class"] = new_class
         self.grimoire_data[self.chosen_idx]["class_hex"][1] = uih.class_id_map()[new_class]
+
+    def set_grimoire_quality(self, new_quality):
+        self.grimoire_data[self.chosen_idx]["quality"] = new_quality
+        self.grimoire_data[self.chosen_idx]["quality_hex"][1] = uih.quality_id_map()[new_quality]
