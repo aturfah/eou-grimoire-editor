@@ -59,6 +59,11 @@ def get_chosen_grimoire_idx():
 
 
 @eel.expose
+def get_grimoire_class_options():
+    return list(uih.class_id_map().keys())
+
+
+@eel.expose
 def update_chosen_grimoire(new_idx):
     if not isinstance(new_idx, int):
         new_idx = int(new_idx)
