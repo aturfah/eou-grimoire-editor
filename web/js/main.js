@@ -140,7 +140,20 @@ async function grimoreQualityCallback() {
   renderChosenGrimoire();
 }
 
+async function grimoireUnknownOriginCallback() {
+  console.log("AAAHHHH")
+  const grimOriginUnk = document.getElementById("grim-unk-origin").checked;
+  console.log(grimOriginUnk);
 
+  // Set the grimoire generator to unable to be edited if Unknown
+  const grimGeneratorField = document.getElementById("grim-generator");
+  grimGeneratorField.readOnly = grimOriginUnk;
+  if (grimOriginUnk === true) {
+    grimGeneratorField.classList.add("greyed-out")
+  } else {
+    grimGeneratorField.classList.remove("greyed-out")
+  }
+}
 
 // Load the file from disk and prepare UI
 async function loadMethod() {

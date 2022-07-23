@@ -20,3 +20,12 @@ div.button-div {
 .chosen-grimoire table.grimoire-table td {
   padding: 5px;
 }
+
+table.grimoire-table {
+  margin: auto;
+}
+
+.greyed-out {
+  background-color: lightgray;
+  color: gray;
+}
