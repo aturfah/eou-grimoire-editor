@@ -4,12 +4,15 @@ from copy import deepcopy
 from pprint import pprint
 
 import ui_helpers as uih
+import map_helpers as mh
 
 ## Hide tkinter Window
 root = tk.Tk()
 root.wm_attributes('-topmost', 1)
 root.withdraw()
 
+NAME_ID_MAP = uih.name_id_map()
+ID_NAME_MAP = mh.load_skill_ids()
 
 class SaveFileManager:
     def __init__(self):
@@ -67,3 +70,26 @@ class SaveFileManager:
 
     def get_chosen_grimoire(self):
         return self.grimoire_data[self.chosen_idx]
+
+    def set_grimoire_skill_name(self, idx, skill_name):
+        old_skill_name = deepcopy(self.grimoire_data[self.chosen_idx]["skills"][idx]["name"])
+        skill_level = self.grimoire_data[self.chosen_idx]["skills"][idx]["level"]
+
+        self.grimoire_data[self.chosen_idx]["skills"][idx]["name"] = skill_name
+        self.grimoire_data[self.chosen_idx]["skills"][idx]["_id"] = NAME_ID_MAP[skill_name]
+
+        if skill_name == "Blank" and skill_level != 0:
+            self.set_grimoire_skill_level(idx, "0")
+        elif old_skill_name == "Blank":
+            self.set_grimoire_skill_level(idx, "1")
+
+    def set_grimoire_skill_level(self, idx, skill_level):
+        skill_name = self.grimoire_data[self.chosen_idx]["skills"][idx]["name"]
+        if not isinstance(skill_level, int):
+            skill_level = int(skill_level)
+
+        self.grimoire_data[self.chosen_idx]["skills"][idx]["level"] = skill_level
+        self.grimoire_data[self.chosen_idx]["skills"][idx]["level_hex"] = (str(skill_level).zfill(2), "00")
+
+        if skill_level == 0 and skill_name != "Blank":
+            self.set_grimoire_skill_name(idx, "Blank")
