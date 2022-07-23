@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from copy import deepcopy
+from pprint import pprint
 
 import ui_helpers as uih
 
@@ -39,3 +40,27 @@ class SaveFileManager:
             uih.save_wrapper(destination, self.orig_hex, self.grimoire_data)
         except Exception as exc:
             raise exc
+
+    def get_grimoire_labels(self):
+        grim_names = []
+        counter = 0
+        name_str = "{ctr} {qlty} {cls} Grimoire; {nskills} Skills"
+        for gdatum in self.grimoire_data:
+            counter += 1
+            if not gdatum["valid"]:
+                grim_names.append("{ctr} Empty".format(ctr=counter))
+            else:
+                grim_class = gdatum["class"].split("(")[0]
+                num_skills = 0
+                for sdatum in gdatum["skills"]:
+                    if sdatum["name"] != "Blank":
+                        num_skills += 1
+
+                grim_names.append(name_str.format(
+                    ctr=counter,
+                    qlty=gdatum["quality"],
+                    cls=grim_class.strip(),
+                    nskills=num_skills
+                ))
+
+        return grim_names
