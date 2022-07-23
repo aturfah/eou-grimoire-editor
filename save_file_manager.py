@@ -162,14 +162,16 @@ class SaveFileManager:
             raise exc
 
         if new_name:
-            self.grimoire_data[self.chosen_idx]["unknown_origin"] = False
-            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "00"
+            self.set_grimoire_unkown_origin(False)
         else:
-            self.grimoire_data[self.chosen_idx]["unknown_origin"] = True
-            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "30"
+            self.set_grimoire_unkown_origin(True)
 
     def set_grimoire_unkown_origin(self, new_value):
         self.grimoire_data[self.chosen_idx]["unknown_origin"] = new_value
+        if new_value == True:
+            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "30"
+        else:
+            self.grimoire_data[self.chosen_idx]["class_hex"][0] = "00"
 
     def set_grimoire_active(self, new_value):
         self.grimoire_data[self.chosen_idx]["valid"] = new_value
