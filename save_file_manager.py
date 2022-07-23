@@ -45,9 +45,6 @@ class SaveFileManager:
             raise exc
 
     def get_grimoire_labels(self):
-        grim_names = []
-        counter = 0
-
         ## Store these to form padded strings later
         invalid_idx = []
         str1s = []
@@ -58,9 +55,9 @@ class SaveFileManager:
         gen_width = 0
         skill_width = 0
         str1_width = 0
+        counter = 0
 
         for gdatum in self.grimoire_data:
-            counter += 1
             if not gdatum["valid"]:
                 invalid_idx.append(counter)
                 str1s.append("")
@@ -98,8 +95,11 @@ class SaveFileManager:
                 nskills.append(num_skills)
                 if len(num_skills) > skill_width:
                     skill_width = len(num_skills)
+            
+            counter += 1
 
         posn_counter = 0
+        grim_names = []
         name_str = "{ctr} | {str1:{width_str}} | {gen:{width_gen}} | {nskills:{width_skills}}"
         while posn_counter < len(self.grimoire_data):
             posn_ctr_str = str(posn_counter+1).zfill(2)
