@@ -54,7 +54,13 @@ The `Chosen Grimoire` dropdown selects the grimoire to be edited. It also update
 
 The `Active Grimoire` checkbox determines if a grimoire is empty or not. Un-checking the box will disable all editing, and if you save the grimoire will be empty. This can serve to delete a grimoire you so please.
 
-The remainder of the features are straightforward. Note that if `Unknown Origin` is checked, then the grimoire will be 
+The `Grimoire Class` dropdown sets the equipment bonus a grimoire provides. 
+
+The `Grimoire Quality` is a cosmetic feature and need not be consistent with the levels of the grimoires provided.
+
+The `Grimoire Generator` and `Unknown Origin` fields determine name of the creator of the grimoire. If `Unknown Origin` is checked, then the grimoire will display unknown origin, even if a name is typed the field. Otherwise, the name provided in the generator field will be used. This is another cosmetic feature.
+
+The `Skill Name` and `Skill Level` dropdowns can be used to set the skill name and level.
 
 
 ## Build/Debug
