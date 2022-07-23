@@ -54,12 +54,30 @@ async function setSkillNameDropdown() {
   });
 }
 
+// Set the elements in the grimoire quality dropdown
+async function setGrimoireQualityDropdown() {
+  let qualityList = await eel.get_grimoire_quality_options()();
+
+  const qualityDropdown = document.getElementById("grim-quality");
+
+  qualityList.forEach(name => {
+    let opt = document.createElement("option")
+    opt.value = name
+    opt.innerHTML = name
+    qualityDropdown.appendChild(opt)
+  })
+}
+
 // Render the chosen Grimoire
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
 
   const grimoireClass = document.getElementById("grim-class");
   grimoireClass.value = grimoireDatum.class;
+
+  const grimoireQuality = document.getElementById("grim-quality");
+  grimoireQuality.value = grimoireDatum.quality;
+
 
   grimoireDatum["skills"].forEach((val, idx) => {
     // Set the skill name
@@ -124,6 +142,7 @@ async function loadMethod() {
   setGrimoireDropdown();
   setSkillNameDropdown();
   setGrimoireClassDropdown();
+  setGrimoireQualityDropdown();
   renderChosenGrimoire();
 
   // Reset/Save buttons are allowed
