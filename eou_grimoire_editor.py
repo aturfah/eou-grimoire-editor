@@ -97,8 +97,10 @@ def update_grimoire_quality(new_quality):
 
 @eel.expose
 def update_grimoire_generator(new_name):
-    SFM.set_grimoire_generator(new_name)
-
+    try:
+        SFM.set_grimoire_generator(new_name)
+    except Exception as exc:
+        eel.prompt_alerts(str(exc))
 
 @eel.expose
 def update_grimoire_unknown_origin(new_value):
