@@ -92,6 +92,9 @@ async function renderChosenGrimoire() {
   grimOriginUnk.checked = grimoireDatum.unknown_origin;
   updateGrimoireGeneratorReadOnly(grimoireDatum.unknown_origin);
 
+  const grimGenerator = document.getElementById("grim-generator");
+  grimGenerator.value = grimoireDatum["name"];
+
   grimoireDatum["skills"].forEach((val, idx) => {
     // Set the skill name
     let skillNameSelect = document.getElementById("skill-name"+idx);
