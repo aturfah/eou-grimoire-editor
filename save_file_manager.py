@@ -40,7 +40,8 @@ class SaveFileManager:
             return
 
         try:
-            return uih.save_wrapper(self.orig_hex, self.grimoire_data, destination)
+            uih.save_wrapper(self.orig_hex, self.grimoire_data, destination)
+            return destination
         except Exception as exc:
             raise exc
 
