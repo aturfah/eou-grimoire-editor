@@ -115,3 +115,6 @@ class SaveFileManager:
         else:
             self.grimoire_data[self.chosen_idx]["unknown_origin"] = True
             self.grimoire_data[self.chosen_idx]["class_hex"][0] = "30"
+
+    def set_grimoire_unkown_origin(self, new_value):
+        self.grimoire_data[self.chosen_idx]["unknown_origin"] = new_value

@@ -68,6 +68,16 @@ async function setGrimoireQualityDropdown() {
   })
 }
 
+function updateGrimoireGeneratorReadOnly(grimOriginUnk) {
+  const grimGeneratorField = document.getElementById("grim-generator");
+  grimGeneratorField.readOnly = grimOriginUnk;
+  if (grimOriginUnk === true) {
+    grimGeneratorField.classList.add("greyed-out")
+  } else {
+    grimGeneratorField.classList.remove("greyed-out")
+  }
+}
+
 // Render the chosen Grimoire
 async function renderChosenGrimoire() {
   const grimoireDatum = await eel.get_chosen_grimoire()()
@@ -78,6 +88,9 @@ async function renderChosenGrimoire() {
   const grimoireQuality = document.getElementById("grim-quality");
   grimoireQuality.value = grimoireDatum.quality;
 
+  const grimOriginUnk = document.getElementById("grim-unk-origin");
+  grimOriginUnk.checked = grimoireDatum.unknown_origin;
+  updateGrimoireGeneratorReadOnly(grimoireDatum.unknown_origin);
 
   grimoireDatum["skills"].forEach((val, idx) => {
     // Set the skill name
@@ -140,19 +153,21 @@ async function grimoreQualityCallback() {
   renderChosenGrimoire();
 }
 
+async function grimoireGeneratorCallback() {
+  const newGenerator = document.getElementById("grim-generator").value;
+  await eel.update_grimoire_generator(newGenerator);
+
+  renderChosenGrimoire();
+}
+
 async function grimoireUnknownOriginCallback() {
-  console.log("AAAHHHH")
   const grimOriginUnk = document.getElementById("grim-unk-origin").checked;
-  console.log(grimOriginUnk);
 
   // Set the grimoire generator to unable to be edited if Unknown
-  const grimGeneratorField = document.getElementById("grim-generator");
-  grimGeneratorField.readOnly = grimOriginUnk;
-  if (grimOriginUnk === true) {
-    grimGeneratorField.classList.add("greyed-out")
-  } else {
-    grimGeneratorField.classList.remove("greyed-out")
-  }
+  updateGrimoireGeneratorReadOnly(grimOriginUnk)
+
+  await eel.update_grimoire_unknown_origin(grimOriginUnk);
+  renderChosenGrimoire();
 }
 
 // Load the file from disk and prepare UI

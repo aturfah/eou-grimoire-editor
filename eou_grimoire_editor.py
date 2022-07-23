@@ -101,6 +101,10 @@ def update_grimoire_generator(new_name):
 
 
 @eel.expose
+def update_grimoire_unknown_origin(new_value):
+    SFM.set_grimoire_unkown_origin(new_value)
+
+@eel.expose
 def reset_grimoire():
     SFM.reset_chosen_grimoire()
 
