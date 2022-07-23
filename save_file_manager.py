@@ -47,7 +47,7 @@ class SaveFileManager:
     def get_grimoire_labels(self):
         grim_names = []
         counter = 0
-        name_str = "{ctr} {qlty} {cls} Grimoire; {nskills} Skills"
+        name_str = "{ctr} | {qlty} {cls} Grimoire | {gen} | {nskills}"
         for gdatum in self.grimoire_data:
             counter += 1
             if not gdatum["valid"]:
@@ -59,8 +59,18 @@ class SaveFileManager:
                     if sdatum["name"] != "Blank":
                         num_skills += 1
 
+                if num_skills == 1:
+                    num_skills = "{} Skill".format(num_skills)
+                else:
+                    num_skills = "{} Skills".format(num_skills)
+
+                gen_name = gdatum["name"]
+                if gdatum["unknown_origin"] == True:
+                    gen_name = "(Unknown Origin)"
+
                 grim_names.append(name_str.format(
                     ctr=counter,
+                    gen=gen_name,
                     qlty=gdatum["quality"],
                     cls=grim_class.strip(),
                     nskills=num_skills
