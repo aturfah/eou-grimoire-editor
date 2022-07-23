@@ -31,8 +31,7 @@ class SaveFileManager:
             self.orig_grimoire_data, self.orig_hex = uih.load_wrapper(self.filename)
             self.grimoire_data = deepcopy(self.orig_grimoire_data)
         except Exception as exc:
-            self._error_message("Error Loading", "Error: {}.\nPlease verify you're loading the mor1rgame.sav file.".format(exc))
-            return
+            raise Exception("Error Loading", "Error: {}.\nPlease verify you're loading the mor1rgame.sav file.".format(exc))
 
     def save_file(self):
         destination = filedialog.asksaveasfilename(filetypes=[("SAV files", ".sav")])
