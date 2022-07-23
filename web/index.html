@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EOU Grimoire Editor</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/eel.js"></script> 
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <h2 class="title">Etrian Odyssey Untold - Grimoire Editor</h2>
+    
+                <!--Load buttons-->
+                <div class="button-div text-center">
+                    <button class="btn btn-primary" id="load-button" type="submit">Load File</button>
+                    <button class="btn btn-primary" id="save-button" disabled="disabled" type="submit">Save File</button>
+                    <button class="btn btn-warning" id="reset-button" disabled="disabled" type="submit">Reset Grimoire</button>
+                </div>
+
+                <!--Grimoire Choice Dropdown-->
+                <div class="text-center">
+                    Chosen Grimoire: <select class="grimoire-dropdown" id="grimoire-dropdown" onchange="grimoireSelectCallback()"></select>
+                </div>
+
+                <!--Chosen Grimoire Data-->
+                <div class="chosen-grimoire">
+                    <p>Skill Name: <select id="skill-name" onchange="skillSelectCallback()"></select></p>
+                    <p>Skill Level: <select id="skill-level" onchange="skillLevelCallback()">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select></p>
+                    <p>Bonus Type: <select id="bonus-type" onchange="bonusTypeCallback()"></select></p>
+                    <p>Bonus Level: <select id="bonus-level" onchange="bonusLevelCallback()">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+<script src="js/main.js"></script>
+</html>
