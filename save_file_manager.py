@@ -17,7 +17,7 @@ class SaveFileManager:
         self.orig_grimoire_data = None
         self.orig_hex = None
         self.grimoire_data = None
-
+        self.chosen_idx = 0
 
     def load_file(self):
         self.filename = filedialog.askopenfilename(filetypes=[("SAV files", ".sav")])
@@ -64,3 +64,6 @@ class SaveFileManager:
                 ))
 
         return grim_names
+
+    def get_chosen_grimoire(self):
+        return self.grimoire_data[self.chosen_idx]
