@@ -47,11 +47,25 @@ class SaveFileManager:
     def get_grimoire_labels(self):
         grim_names = []
         counter = 0
-        name_str = "{ctr} | {qlty} {cls} Grimoire | {gen} | {nskills}"
+
+        ## Store these to form padded strings later
+        invalid_idx = []
+        str1s = []
+        gens = []
+        nskills = []
+
+        ## Check the longest lengths
+        gen_width = 0
+        skill_width = 0
+        str1_width = 0
+
         for gdatum in self.grimoire_data:
             counter += 1
             if not gdatum["valid"]:
-                grim_names.append("{ctr} Empty".format(ctr=counter))
+                invalid_idx.append(counter)
+                str1s.append("")
+                gens.append("")
+                nskills.append("")
             else:
                 grim_class = gdatum["class"].split("(")[0]
                 num_skills = 0
@@ -68,13 +82,40 @@ class SaveFileManager:
                 if gdatum["unknown_origin"] == True:
                     gen_name = "(Unknown Origin)"
 
-                grim_names.append(name_str.format(
-                    ctr=str(counter).zfill(2),
-                    gen=gen_name,
+                str1 = "{qlty} {cls} Grimoire".format(
                     qlty=gdatum["quality"],
-                    cls=grim_class.strip(),
-                    nskills=num_skills
-                ))
+                    cls=grim_class.strip()
+                )
+
+                str1s.append(str1)
+                if len(str1) > str1_width:
+                    str1_width = len(str1)
+
+                gens.append(gen_name)
+                if len(gen_name) > gen_width:
+                    gen_width = len(gen_name)
+
+                nskills.append(num_skills)
+                if len(num_skills) > skill_width:
+                    skill_width = len(num_skills)
+
+        posn_counter = 0
+        name_str = "{ctr} | {str1:{width_str}} | {gen:{width_gen}} | {nskills:{width_skills}}"
+        while posn_counter < len(self.grimoire_data):
+            posn_ctr_str = str(posn_counter+1).zfill(2)
+            if posn_counter in invalid_idx:
+                grim_names.append("{ctr} Empty".format(ctr=posn_ctr_str))
+            else:
+                grim_names.append(name_str.format(
+                    ctr=posn_ctr_str,
+                    str1=str1s[posn_counter],
+                    width_str=str1_width,
+                    gen=gens[posn_counter],
+                    width_gen=gen_width,
+                    nskills=nskills[posn_counter],
+                    width_skills=skill_width
+                ).replace(" ", "&nbsp;"))
+            posn_counter += 1
 
         return grim_names
 
