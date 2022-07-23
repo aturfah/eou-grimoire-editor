@@ -40,7 +40,7 @@ class SaveFileManager:
             return
 
         try:
-            uih.save_wrapper(destination, self.orig_hex, self.grimoire_data)
+            return uih.save_wrapper(self.orig_hex, self.grimoire_data, destination)
         except Exception as exc:
             raise exc
 
@@ -140,7 +140,7 @@ class SaveFileManager:
             skill_level = int(skill_level)
 
         self.grimoire_data[self.chosen_idx]["skills"][idx]["level"] = skill_level
-        self.grimoire_data[self.chosen_idx]["skills"][idx]["level_hex"] = (str(skill_level).zfill(2), "00")
+        self.grimoire_data[self.chosen_idx]["skills"][idx]["level_hex"] = (format(skill_level, "x").zfill(2), "00")
 
         if skill_level == 0 and skill_name != "Blank":
             self.set_grimoire_skill_name(idx, "Blank")
