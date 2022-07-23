@@ -1,3 +1,5 @@
+"""No longer used; only included for reference."""
+
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog, messagebox
