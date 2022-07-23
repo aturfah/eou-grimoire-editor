@@ -26,6 +26,7 @@ async function setGrimoireDropdown() {
   grimoireDropdown.value = await eel.get_chosen_grimoire_idx()();
 }
 
+// Set the elements in the grimoire class dropdown
 async function setGrimoireClassDropdown() {
   let grimClasses = await eel.get_grimoire_class_options()()
 
@@ -38,7 +39,6 @@ async function setGrimoireClassDropdown() {
     classDropdown.appendChild(opt)
   })
 }
-
 
 // Set the elements in the skill selection dropdown
 async function setSkillNameDropdown() {
@@ -85,7 +85,6 @@ async function grimoireSelectCallback() {
 // When the skill select dropdown is changed, update the python class
 async function skillSelectCallback(idx) {
   const newSkill = document.getElementById("skill-name"+idx).value;
-  console.log(idx, newSkill)
   await eel.update_grimoire_skill(idx, newSkill)();
 
   // Update the panel
@@ -97,6 +96,16 @@ async function skillSelectCallback(idx) {
 async function skillLevelCallback(idx) {
   const newLevel = document.getElementById("skill-level"+idx).value;
   await eel.update_grimoire_skill_level(idx, newLevel);
+
+  // Update the panel
+  setGrimoireDropdown();
+  renderChosenGrimoire();
+}
+
+// When the grimoire class is changed, update the python class
+async function grimoreClassCallback() {
+  const newClass = document.getElementById("grim-class").value;
+  await eel.update_grimoire_class(newClass);
 
   // Update the panel
   setGrimoireDropdown();
