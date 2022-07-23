@@ -16,3 +16,7 @@ div.button-div {
 .chosen-grimoire {
   padding: 5px;
 }
+
+.chosen-grimoire table.grimoire-table td {
+  padding: 5px;
+}
