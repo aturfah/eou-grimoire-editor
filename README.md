@@ -9,14 +9,15 @@ Requirements:
 - Python 3 (with tkinter)
 - Basic command line usage
 
-Download the code from this repository navigate to the directory and using the terminal. From there, run the command below
+Download the code from this repository navigate to the directory and using the terminal. You will need to install the `eel` python package in order to run the program, which can be installed via te command below
+```
+pip install eel
+```
+It is recommended to do this in a virtual environment; please check out [this link](https://docs.python.org/3/library/venv.html) to get more information.
+
+From there, run the command below
 ```
 python eou_grimoire_editor.py
-```
-
-You may need to install tkinter for Python3; this can be done on Ubuntu systems with the following command
-```
-sudo apt-get install python3-tk
 ```
 
 ## Basic Usage (with pictures!)
