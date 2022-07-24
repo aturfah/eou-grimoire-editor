@@ -11,7 +11,8 @@ def load_wrapper(filename):
 def _invert_dictionary(temp):
     output = {}
     for key in temp.keys():
-        output[temp[key]] = key
+        if temp[key] not in output:
+            output[temp[key]] = key
 
     return output
 
